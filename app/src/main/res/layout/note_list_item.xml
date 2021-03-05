@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="title"
+            type="String" />
+        <variable
+            name="date"
+            type="String" />
+        <variable
+            name="noteListViewModel"
+            type="com.carbondev.tallynote.view.viewmodel.NoteListViewModel" />
+        <variable
+            name="noteKey"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/Foreground"
+        android:onClick="@{() -> noteListViewModel.onNoteItemClick(noteKey)}"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:textColor="@color/colorGray"
+            android:textSize="20sp"
+            tools:text="This Is Note" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{date}"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            tools:text="Date" />
+    </LinearLayout>
+</layout>

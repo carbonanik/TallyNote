@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.carbondev.tallynote.view.viewmodel.LoginViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragments.LoginFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Foreground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:text="@string/log_in"
+                    android:textColor="@color/colorGray"
+                    android:textSize="50sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/login_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/button_right_round"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="14dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="14dp"
+                    android:selectAllOnFocus="true"
+                    android:text="@={viewModel.loginNumber}"
+                    android:textColor="@color/Foreground"
+                    android:textColorHint="@color/Foreground"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/login_country_code_picker"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+                <EditText
+                    android:id="@+id/login_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:background="@drawable/rounded_button"
+                    android:hint="@string/password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="14dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="14dp"
+                    android:selectAllOnFocus="true"
+                    android:text="@={viewModel.loginPassword}"
+                    android:textColor="@color/Foreground"
+                    android:textColorHint="@color/Foreground"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_number" />
+
+                <ImageView
+                    android:id="@+id/loin_password_visibility_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_visibility"
+                    android:onClick="@{() -> viewModel.onViewPasswordClick()}"
+                    app:layout_constraintBottom_toBottomOf="@+id/login_password"
+                    app:layout_constraintEnd_toEndOf="@+id/login_password"
+                    app:layout_constraintTop_toTopOf="@+id/login_password"
+                    app:tint="#ffffff" />
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="48dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/log_in"
+                    android:onClick="@{() -> viewModel.onLoginPress()}"
+                    android:enabled="@{viewModel.buttonEnabled}"
+                    android:textColor="@color/Foreground"
+                    android:textSize="24sp"
+                    app:backgroundTint="@color/Background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/login_password"
+                    app:layout_constraintStart_toStartOf="@+id/login_password"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.4" />
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/login_country_code_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:background="@drawable/button_left_round"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="7dp"
+                    android:paddingRight="0dp"
+                    app:ccp_contentColor="@color/Foreground"
+                    app:ccp_defaultNameCode="BD"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/login_number"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/login_number" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.afollestad.material-dialogs:lifecycle:3.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b9dcc640bf3fb8653475af10e23e6100/jetified-lifecycle-3.2.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f905d3003a412923f8ed94b987850a3/jetified-lifecycle-3.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f905d3003a412923f8ed94b987850a3/jetified-lifecycle-3.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8f905d3003a412923f8ed94b987850a3/jetified-lifecycle-3.2.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad.material-dialogs/lifecycle/3.2.1/4cf1050eda96961168d5ec4908bf65b328b4fbec/lifecycle-3.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad.material-dialogs/lifecycle/3.2.1/c3567262f5f13b42a992feb639c213230fe6671d/lifecycle-3.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

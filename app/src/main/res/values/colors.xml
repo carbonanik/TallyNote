@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#696969</color>
+    <color name="colorPrimaryDark">#474747</color>
+    <color name="colorAccent">#3C3F41</color>
+
+
+    <color name="Background">#0054AC</color>
+    <color name="BackgroundDim">#007FFF</color>
+    <color name="Foreground">#E4E8EE</color>
+    <color name="FloatingIcon">#14293F</color>
+
+
+    <color name="colorUnique">#EC2553</color>
+    <color name="colorGray">#5E5E5E</color>
+
+
+</resources>

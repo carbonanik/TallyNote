@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="itemCustomer"
+            type="com.carbondev.tallynote.datamodel.Customer" />
+
+        <variable
+            name="itemCustomerViewModel"
+            type="com.carbondev.tallynote.view.viewmodel.ListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/BackgroundDim"
+        android:onClick="@{() -> itemCustomerViewModel.onItemClick(itemCustomer.key)}">
+
+        <ImageView
+            android:id="@+id/item_customer_option"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/option"
+            android:onClick="@{() -> itemCustomerViewModel.onOptionCartClick(itemCustomer.key)}"
+            android:padding="7dp"
+            android:src="@drawable/ic_add_w"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemCustomerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@+id/item_customer_option"
+            android:layout_toLeftOf="@+id/item_customer_option"
+            android:text="@{itemCustomer.name}"
+            android:textColor="@color/Foreground"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_customer_option"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Customer Name" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:dueOrAdv="@{itemCustomer.totalDue}"
+            android:textColor="@color/Foreground"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemCustomerName"
+            app:layout_constraintEnd_toStartOf="@+id/item_customer_option"
+            app:layout_constraintStart_toStartOf="@+id/itemCustomerName"
+            app:layout_constraintTop_toBottomOf="@+id/itemCustomerName"
+            tools:text="Due : 100" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView18"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="5dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:dueOrAdv="@{itemCustomer.totalDue}"-->
+<!--            android:textColor="@color/Foreground"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/textView17"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/textView17"-->
+<!--            tools:text="Due : " />-->
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
