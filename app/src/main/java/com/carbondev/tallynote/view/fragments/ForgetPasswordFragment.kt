@@ -13,11 +13,6 @@ import com.carbondev.tallynote.databinding.ForgrtPasswordFragmentBinding
 import com.carbondev.tallynote.view.viewmodel.ForgrtPasswordViewModel
 
 class ForgetPasswordFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ForgetPasswordFragment()
-    }
-
     private lateinit var viewModel: ForgrtPasswordViewModel
     private lateinit var viewBinding: ForgrtPasswordFragmentBinding
     private lateinit var navController: NavController
