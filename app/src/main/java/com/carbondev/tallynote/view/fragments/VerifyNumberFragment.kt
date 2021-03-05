@@ -17,10 +17,6 @@ import com.carbondev.tallynote.view.viewmodel.VerifyNumberViewModel
 
 class VerifyNumberFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = VerifyNumberFragment()
-    }
-
     private lateinit var viewModel: VerifyNumberViewModel
     private lateinit var viewBinding : VerifyNumberFragmentBinding
     private lateinit var navController: NavController
