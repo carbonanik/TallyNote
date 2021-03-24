@@ -5,19 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import java.util.concurrent.TimeUnit
+
 
 object AuthRepository {
 
     private val auth = FirebaseAuth.getInstance()
 
-    private val mNumberExists = MutableLiveData<Boolean>()
-    val numberExists : LiveData<Boolean>
-        get() = mNumberExists
+//    private val mNumberExists = MutableLiveData<Boolean>()
+//    val numberExists : LiveData<Boolean>
+//        get() = mNumberExists
+
+    private val mAccountExist = MutableLiveData<Boolean>()
+    val accountExist: LiveData<Boolean>
+        get() = mAccountExist
 
     private val mLoginSuccessful = MutableLiveData<Boolean>()
     val loginSuccessful : LiveData<Boolean>
@@ -60,20 +61,20 @@ object AuthRepository {
         get() = mRetrieveSmsCode
 
 
-    fun numberExists(fullPhoneNumber : String) {
+//    fun numberExists(fullPhoneNumber : String) {
+//
+//        val ref = FirebaseDatabase.getInstance().reference.child("applicationPublic").child("phoneNumber")
+//        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                mNumberExists.value = dataSnapshot.hasChild(fullPhoneNumber)
+//            }
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                mNumberExists.value = false
+//            }
+//        })
+//    }
 
-        val ref = FirebaseDatabase.getInstance().reference.child("applicationPublic").child("phoneNumber")
-        ref.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                mNumberExists.value = dataSnapshot.hasChild(fullPhoneNumber)
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                mNumberExists.value = false
-            }
-        })
-    }
-
-    fun signInWithEmailPassword(email : String, password : String){
+    fun signInWithEmailPassword(email: String, password: String){
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener{ task ->
@@ -88,13 +89,22 @@ object AuthRepository {
         return auth.currentUser!!.uid
     }
 
-    fun verifyNumber(fullPhoneNumber: String, activity : Activity){
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            fullPhoneNumber,         // Phone number to verify
-            60,                 // Timeout duration
-            TimeUnit.SECONDS,   // Unit of timeout
-            activity, // Activity (for callback binding)
-            callbacks)          // OnVerificationStateChangedCallbacks
+    fun verifyNumber(phoneNumberWithCountryCode: String, activity: Activity){
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//            phoneNumberWithCountryCode,         // Phone number to verify
+//            60,                 // Timeout duration
+//            TimeUnit.SECONDS,   // Unit of timeout
+//            activity, // Activity (for callback binding)
+//            callbacks
+//        )          // OnVerificationStateChangedCallbacks
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumberWithCountryCode) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(activity) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -104,6 +114,7 @@ object AuthRepository {
             val smsCode = credential.smsCode
             if (smsCode != null){
                 mRetrieveSmsCode.value = smsCode
+                println("retreved code $smsCode")
             }
         }
 
@@ -123,12 +134,12 @@ object AuthRepository {
         }
     }
 
-    fun signInWithPhoneAuthCredential(receivedCode : String, activity : Activity) {
+    fun signInWithPhoneAuthCredential(receivedCode: String, activity: Activity) {
 
         val credential = PhoneAuthProvider.getCredential(storedVerificationId.value!!, receivedCode)
 
 
-        FirebaseAuth.getInstance().signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
                     mPhoneRegistrationSuccessful.value = true
@@ -148,7 +159,7 @@ object AuthRepository {
         val email = "$fullPhoneNumber@carbondev.com"
 
         val emailCredential = EmailAuthProvider.getCredential(email, password)
-        FirebaseAuth.getInstance().currentUser?.linkWithCredential(emailCredential)
+        auth.currentUser?.linkWithCredential(emailCredential)
             ?.addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
 
@@ -161,7 +172,7 @@ object AuthRepository {
     }
 
     private fun loginWithEmailCredential(credential: AuthCredential){
-        FirebaseAuth.getInstance().signInWithCredential(credential)
+        auth.signInWithCredential(credential)
             .addOnSuccessListener {
                 mLinkEmailPasswordSuccessful.value = true
 
@@ -172,8 +183,8 @@ object AuthRepository {
             }
     }
 
-    fun changeEmailPassword(password : String) {
-        val user = FirebaseAuth.getInstance().currentUser
+    fun changeEmailPassword(password: String) {
+        val user = auth.currentUser
 
         user!!.updatePassword(password).addOnCompleteListener {
             if (it.isSuccessful){
@@ -183,20 +194,29 @@ object AuthRepository {
     }
 
     fun checkIfLoggedIn() {
-        mLoggedIn.value = FirebaseAuth.getInstance().currentUser != null
+        mLoggedIn.value = auth.currentUser != null
+    }
+
+    fun accountExist(fullPhoneNumber: String){
+        val fakeEmail = "$fullPhoneNumber@carbondev.com"
+        auth.fetchSignInMethodsForEmail(fakeEmail)
+            .addOnCompleteListener { task ->
+                val isNewUser = task.result!!.signInMethods!!.isEmpty()
+                mAccountExist.value = !isNewUser
+            }
     }
 
     fun clearAllAuthVariable() {
-        mNumberExists.value = false
-        mLoginSuccessful.value = false
-        mStoredVerificationId.value = ""
-        mPhoneRegistrationSuccessful.value = false
-        mCodeNotMatch.value = false
-        mVerificationFaild.value = false
-        mLinkEmailPasswordSuccessful.value = false
-        mPasswordChanged.value = false
-        mLoggedIn.value = false
-        mLogInErrorMassage.value = ""
-        mRetrieveSmsCode.value = ""
+        mAccountExist.value = null
+        mLoginSuccessful.value = null
+        mStoredVerificationId.value = null
+        mPhoneRegistrationSuccessful.value = null
+        mCodeNotMatch.value = null
+        mVerificationFaild.value = null
+        mLinkEmailPasswordSuccessful.value = null
+        mPasswordChanged.value = null
+        mLoggedIn.value = null
+        mLogInErrorMassage.value = null
+        mRetrieveSmsCode.value = null
     }
 }

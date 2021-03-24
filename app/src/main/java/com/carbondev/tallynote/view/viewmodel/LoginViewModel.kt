@@ -28,28 +28,18 @@ class LoginViewModel : ViewModel() {
     val buttonEnabled: LiveData<Boolean>
         get() = _buttonEnabled
 
+    val processingLogin = MutableLiveData<Boolean>().apply { value = false }
+
     var ccp : CountryCodePicker? = null
 
-    val onSignInButtonClick = MutableLiveData<Boolean>()
     val onViewPasswordClick = MutableLiveData<Boolean>().apply { value = false }
 
-
     fun onLoginPress(){
-        onSignInButtonClick.value = true
-        if (loginPhoneNumberValid() && !loginPassword.value.isNullOrEmpty() && loginPassword.value!!.length >= 6 ){
+        if (loginPassword.value!!.length >= 6 ){
+            processingLogin.value = true
             authRepository.signInWithEmailPassword(fakeEmail(), loginPassword.value!!)
-
         } else {
-
-            if (loginPassword.value.isNullOrEmpty() || loginNumber.value.isNullOrEmpty()){
-                info.value = "Fill up Phone and Password Field"
-            } else if (loginPassword.value!!.length <= 6) {
-                info.value = "Password is too Short"
-            } else if (!loginPhoneNumberValid()) {
-                info.value = "Invalid Phone Number"
-            } else {
-                info.value = "Fill up Correctly"
-            }
+            info.value = "Password is too Short"
         }
     }
 
@@ -57,12 +47,8 @@ class LoginViewModel : ViewModel() {
         onViewPasswordClick.value = !onViewPasswordClick.value!!
     }
 
-    private fun loginPhoneNumberValid(): Boolean {
-        return loginNumber.value!!.isNotEmpty() && loginNumber.value!!.length <= 11 && loginNumber.value!!.isDigitsOnly()
-    }
-
     fun validateInput() {
-        _buttonEnabled.value = !(loginNumber.value!!.isEmpty() || loginPassword.value!!.isEmpty())
+        _buttonEnabled.value = loginNumber.value!!.isNotEmpty() && loginPassword.value!!.isNotEmpty() && !processingLogin.value!!
     }
 
     private fun fakeEmail(): String {

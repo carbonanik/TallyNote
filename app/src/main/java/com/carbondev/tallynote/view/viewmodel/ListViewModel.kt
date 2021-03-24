@@ -1,7 +1,6 @@
 package com.carbondev.tallynote.view.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.carbondev.tallynote.datamodel.Customer
@@ -10,13 +9,10 @@ import com.carbondev.tallynote.utils.DateTimeString
 import com.carbondev.tallynote.view.adapter.CustomerListAdapter
 import java.util.*
 
-
 class ListViewModel(application: Application): AndroidViewModel(application) {
 
     private val remoteDataRepo   = FirebaseDataRepository
-
-    private var adapter: CustomerListAdapter? = null
-    private var listActivityContext : Context? = null
+    private var adapter = CustomerListAdapter(this, application.applicationContext)
 
     val customerList = MutableLiveData<ArrayList<Customer>>()
     val liveCustomerList = remoteDataRepo.allCustomer
@@ -31,38 +27,22 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
 
     val ownerName = remoteDataRepo.ownerName
 
-    val ownerTotalDue = MutableLiveData<String>()
+    var ownerTotalDue = MutableLiveData<String>()
 
 
-    fun init(context: Context){
-        adapter = CustomerListAdapter(this)
+    fun init(){
         getAllCustomer()
-        listActivityContext = context
         getOwnerName()
     }
 
 
-    fun getAdapter(): CustomerListAdapter? {
+    fun getAdapter(): CustomerListAdapter {
         return adapter
     }
 
-//    fun setDataInAdapter(customers: MutableList<Customer>) {
-////        println(adapter)
-////        println(customers)
-////        this.adapter?.setData(customers)
-//    }
-
-//    fun fadeTransitionAnimation(): Animation? {
-//        return AnimationUtils.loadAnimation(listActivityContext, R.anim.fade_transition_animation)
-//    }
-//
-//    fun fadeTransitionReverseAnimation(): Animation? {
-//        return AnimationUtils.loadAnimation(listActivityContext, R.anim.fade_transition_reverse_animation)
-//    }
-
     fun refreshList() {
 //        adapter?.setData(liveCustomerList.value ?: arrayListOf())
-        adapter?.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
         calculateTotalDue()
     }
 
@@ -70,10 +50,6 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
         onItemClick.value = customerKey
 
     }
-
-//    fun onCartClick(){
-//        onCartClick.value = true
-//    }
 
     fun onSettingClick(){
         onSettingClick.value = true

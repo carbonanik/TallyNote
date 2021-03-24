@@ -1,12 +1,16 @@
 package com.carbondev.tallynote.view.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -32,42 +36,60 @@ class SignupFragment : Fragment() {
 
         navController = this.findNavController()
 
+        viewModel.clearAuthVariable()
         setObservers()
 
         return viewBinding.root
     }
 
+    private lateinit var watchList: List<EditText>
     private fun setObservers(){
         viewModel.storedVerificationId.observe(viewLifecycleOwner, {
             if (it.isNotBlank()){
-                viewModel.isLoading.value = false
+                viewModel.processingSignUp.value = false
 
                 val action = SignupFragmentDirections.actionSignupFragmentToVerifyNumberFragment(
                     viewModel.password.value!!,
-                    viewModel.fullPhoneNumber,
+                    viewModel.phoneNumberWithCountryCode,
                     viewModel.userName.value!!
                 )
                 navController.navigate(action)
             }
         })
 
-        viewModel.numberExists.observe(viewLifecycleOwner, {
+//        viewModel.numberExists.observe(viewLifecycleOwner, {
+//            if (it){
+//                viewModel.info.value = "This Number Already Have An Account"
+//                viewModel.processingSignUp.value = false
+//            } else {
+////                //verify this new number
+//                if (viewModel.buttonEnabled.value!!){
+//                    viewModel.verifyNumber(requireActivity())
+//                }
+//            }
+//        })
+
+        viewModel.accountExist.observe(viewLifecycleOwner, {
             if (it){
-                viewModel.info.value = "This Number Already Have An Account"
-                viewModel.isLoading.value = false
+                val text = "This Number Already Exist"
+                println(text)
+                viewModel.info.value = text
+                viewModel.processingSignUp.value = false
             } else {
-//                //verify this new number
-                if (viewModel.buttonEnabled.value!!){
-                    viewModel.verifyNumber(requireActivity())
-                }
+                val text = "This number dose not exist"
+                println(text)
+//                viewModel.info.value = text
+                viewModel.verifyNumber(requireActivity())
             }
         })
 
         viewModel.info.observe(viewLifecycleOwner, {
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            if (!it.isNullOrEmpty()){
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
         })
 
-        viewModel.isLoading.observe( viewLifecycleOwner, {
+        viewModel.processingSignUp.observe( viewLifecycleOwner, {
             if (it){
                 viewBinding.loading.visibility = View.VISIBLE
             } else {
@@ -77,32 +99,44 @@ class SignupFragment : Fragment() {
 
         viewModel.onViewPasswordClick.observe(viewLifecycleOwner, {
             if (it){
-                viewBinding.signUpPassword.transformationMethod = null
-                viewBinding.confirmSignUpPassword.transformationMethod = null
+                viewBinding.signUpPassword.apply {
+                    transformationMethod = null
+                    setSelection(text.length)
+                }
+                viewBinding.confirmSignUpPassword.apply {
+                    transformationMethod = null
+                    setSelection(text.length)
+                }
                 viewBinding.singUpPasswordVisibilityToggle.setImageResource(R.drawable.ic_visibility_off)
 
             } else {
-                viewBinding.confirmSignUpPassword.transformationMethod = PasswordTransformationMethod()
-                viewBinding.signUpPassword.transformationMethod = PasswordTransformationMethod()
+                viewBinding.signUpPassword.apply {
+                    transformationMethod = PasswordTransformationMethod()
+                    setSelection(text.length)
+                }
+
+                viewBinding.confirmSignUpPassword.apply {
+                    transformationMethod = PasswordTransformationMethod()
+                    setSelection(text.length)
+                }
                 viewBinding.singUpPasswordVisibilityToggle.setImageResource(R.drawable.ic_visibility)
 
             }
         })
 
-        viewModel.userName.observe(viewLifecycleOwner, {
-            viewModel.validateInput()
-        })
+        viewBinding.apply {
+            watchList = listOf(signUpName, signUpPhone, signUpPassword, confirmSignUpPassword)
+            watchList.forEach { it.addTextChangedListener(watcher) }
+        }
+    }
 
-        viewModel.phoneNumber.observe(viewLifecycleOwner, {
-            viewModel.validateInput()
-        })
 
-        viewModel.password.observe(viewLifecycleOwner, {
-            viewModel.validateInput()
-        })
+    private val watcher = object : TextWatcher{
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable?) {
+            viewModel.buttonEnabled.value = !(watchList.any { it.text.isNullOrBlank() })
+        }
 
-        viewModel.conPassword.observe(viewLifecycleOwner, {
-            viewModel.validateInput()
-        })
     }
 }

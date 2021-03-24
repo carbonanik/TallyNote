@@ -53,9 +53,8 @@ class VerifyNumberViewModel : ViewModel() {
         authRepository.linkEmailPasswordLogin(phone, password, activity)
     }
 
-    fun allSuccess(name : String, phone : String){
+    fun allSuccess(name : String){
         remoteData.saveNameToFirebase(name)
-        remoteData.saveThisNumberToServer(phone)
     }
 
     fun changeEmailPassword(password: String) {

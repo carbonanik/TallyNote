@@ -14,39 +14,35 @@ class SignupViewModel : ViewModel() {
     private val authRepository = AuthRepository
     private val remoteData = FirebaseDataRepository
 
-    var fullPhoneNumber : String = ""
+    var phoneNumberWithCountryCode : String = ""
     var ccp : CountryCodePicker? = null
 
-    val userName = MutableLiveData<String>()
-    val phoneNumber = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
-    val conPassword = MutableLiveData<String>()
-    val info = MutableLiveData<String>()
+    val userName = MutableLiveData<String>().apply { value = "" }
+    val phoneNumber = MutableLiveData<String>().apply { value = "" }
+    val password = MutableLiveData<String>().apply { value = "" }
+    val conPassword = MutableLiveData<String>().apply { value = "" }
+    val info = MutableLiveData<String>().apply { value = "" }
 
-    val numberExists : LiveData<Boolean>
-        get() = authRepository.numberExists
+    val accountExist = authRepository.accountExist
 
     val storedVerificationId : LiveData<String>
         get() = authRepository.storedVerificationId
 
-    private val _buttonEnabled = MutableLiveData<Boolean>().apply { value = false }
-    val buttonEnabled: LiveData<Boolean>
-        get() = _buttonEnabled
-
-    val isLoading = MutableLiveData<Boolean>()
+    val buttonEnabled = MutableLiveData<Boolean>().apply { value = false }
+    val processingSignUp = MutableLiveData<Boolean>().apply { value = false }
     val onViewPasswordClick = MutableLiveData<Boolean>().apply { value = false }
 
     fun onRegisterButtonClick(){
-        isLoading.value = true
-        if (phoneNumberValid() && !password.value.isNullOrBlank() && password.value!!.length >= 6 && conPassword.value!! == password.value!! && !userName.value.isNullOrBlank()){
 
-            fullPhoneNumber = ccp!!.selectedCountryCodeWithPlus + phoneNumber.value
+        if (phoneNumberValid() && !password.value.isNullOrBlank() && password.value!!.length >= 6 && conPassword.value!! == password.value!! && !userName.value.isNullOrBlank()){
+            processingSignUp.value = true
+            phoneNumberWithCountryCode = ccp!!.selectedCountryCodeWithPlus + phoneNumber.value
 
             info.value = "Please Wait For Verification Code"
-            authRepository.numberExists(fullPhoneNumber)
+            authRepository.accountExist(phoneNumberWithCountryCode)
 
         } else {
-            isLoading.value = false
+            processingSignUp.value = false
             if (userName.value.isNullOrBlank()){
                 info.value = "Name is Empty!"
 
@@ -75,15 +71,14 @@ class SignupViewModel : ViewModel() {
     }
 
     fun verifyNumber(activity: Activity){
-        authRepository.verifyNumber(fullPhoneNumber, activity)
+        authRepository.verifyNumber(phoneNumberWithCountryCode, activity)
     }
 
     fun onViewPasswordClick(){
         onViewPasswordClick.value = !onViewPasswordClick.value!!
     }
 
-    fun validateInput() {
-        _buttonEnabled.value = !(userName.value.isNullOrEmpty() || phoneNumber.value.isNullOrEmpty() || password.value.isNullOrEmpty() || conPassword.value.isNullOrEmpty())
+    fun clearAuthVariable(){
+        authRepository.clearAllAuthVariable()
     }
-
 }

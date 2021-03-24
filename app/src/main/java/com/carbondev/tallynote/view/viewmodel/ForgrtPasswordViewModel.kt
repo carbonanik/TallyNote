@@ -7,32 +7,31 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.carbondev.tallynote.repository.AuthRepository
 import com.carbondev.tallynote.repository.FirebaseDataRepository
-import com.hbb20.CountryCodePicker
 
 class ForgrtPasswordViewModel : ViewModel() {
 
     private val authRepository = AuthRepository
-    private val remoteData = FirebaseDataRepository
 
-    var ccp : CountryCodePicker? = null
-
-    private var fullPhoneNumber : String = ""
+    var countryCode: String? = null
+    private var phoneNumberWithCountryCode : String = ""
 
     val forgetNumber = MutableLiveData<String>()
     val forgetPassword = MutableLiveData<String>()
 
+    val accountExist = authRepository.accountExist
     var receivedCode = MutableLiveData<String>()
 
+    val buttonEnabled = MutableLiveData<Boolean>()
+    val processing = MutableLiveData<Boolean>()
     val info = MutableLiveData<String>()
-    val isLoading = MutableLiveData<Boolean>()
 
     val onViewPasswordClick = MutableLiveData<Boolean>()
     val onSendCodeButtonClick = MutableLiveData<Boolean>()
 //    val verifyResetCodeButtonClicks = MutableLiveData<Boolean>()
 
 
-    val numberExists : LiveData<Boolean>
-        get() = authRepository.numberExists
+//    val numberExists : LiveData<Boolean>
+//        get() = authRepository.numberExists
 
     val storedVerificationId : LiveData<String>
         get() = authRepository.storedVerificationId
@@ -44,16 +43,13 @@ class ForgrtPasswordViewModel : ViewModel() {
         get() = authRepository.passwordChanged
 
     fun onSendCodeButtonClick(){
-        isLoading.value = true
         if ( !forgetPassword.value.isNullOrBlank() && forgetPassword.value!!.length >= 6 && !forgetNumber.value.isNullOrBlank()){
-
-            //add prefix to number from user
-            fullPhoneNumber = ccp!!.selectedCountryCodeWithPlus + forgetNumber.value
+            processing.value = true
+            phoneNumberWithCountryCode = countryCode + forgetNumber.value
             info.value = "Please Wait For Verification Code"
-            authRepository.numberExists(fullPhoneNumber)
+            authRepository.accountExist(phoneNumberWithCountryCode)
 
         } else {
-            isLoading.value = false
             if (forgetNumber.value.isNullOrBlank()){
                 info.value = "Number is Empty!"
             }
@@ -69,7 +65,7 @@ class ForgrtPasswordViewModel : ViewModel() {
     }
 
     private fun phoneNumberValid(): Boolean {
-        return if (ccp!!.selectedCountryCodeWithPlus == "+880") {
+        return if (countryCode == "+880") {
             forgetNumber.value?.length == 10
         } else {
             !forgetNumber.value.isNullOrEmpty() && forgetNumber.value!!.isDigitsOnly()
@@ -77,6 +73,6 @@ class ForgrtPasswordViewModel : ViewModel() {
     }
 
     fun verifyNumber(activity: Activity){
-        authRepository.verifyNumber(fullPhoneNumber, activity)
+        authRepository.verifyNumber(phoneNumberWithCountryCode, activity)
     }
 }

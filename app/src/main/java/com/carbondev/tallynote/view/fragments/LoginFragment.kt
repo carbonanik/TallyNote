@@ -1,6 +1,8 @@
 package com.carbondev.tallynote.view.fragments
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
@@ -39,6 +41,22 @@ class LoginFragment : Fragment() {
 
         setObservers()
 
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+
+            val states = arrayOf(
+                intArrayOf(android.R.attr.state_enabled),
+                intArrayOf(-android.R.attr.state_enabled)
+            )
+            val colors = intArrayOf(
+                Color.parseColor("#0054AC"),
+                Color.parseColor("#818181")
+            )
+            val colorStates = ColorStateList(states,colors)
+
+            viewBinding.loginButton.backgroundTintList = colorStates
+        }
+
         return viewBinding.root
     }
 
@@ -57,18 +75,27 @@ class LoginFragment : Fragment() {
             viewModel.validateInput()
         })
 
+        viewModel.processingLogin.observe(viewLifecycleOwner, {
+            viewModel.validateInput()
+            viewBinding.loading.visibility = if (it) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+        })
+
         viewModel.info.observe(viewLifecycleOwner, {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            if (!it.isNullOrEmpty()){
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            }
         })
 
         viewModel.loginSuccessful.observe(viewLifecycleOwner, {
+            viewModel.processingLogin.value = false
             if (it && FirebaseAuth.getInstance().currentUser != null){
                 viewModel.info.value = "Login Successful"
                 openListActivity()
                 viewModel.clearAllAuthVariable()
-            } else {
-                viewBinding.loginButton.isEnabled = true
-                viewBinding.loading.visibility = View.GONE
             }
         })
 
@@ -76,18 +103,19 @@ class LoginFragment : Fragment() {
             viewModel.info.value = it
         })
 
-        viewModel.onSignInButtonClick.observe(viewLifecycleOwner, {
-            viewBinding.loginButton.isEnabled = false
-            viewBinding.loading.visibility = View.VISIBLE
-        })
-
         viewModel.onViewPasswordClick.observe(viewLifecycleOwner, {
             if (it){
-                viewBinding.loginPassword.transformationMethod = null
+                viewBinding.loginPassword.apply {
+                    transformationMethod = null
+                    setSelection(text.length)
+                }
                 viewBinding.loinPasswordVisibilityToggle.setImageResource(R.drawable.ic_visibility_off)
 
             } else {
-                viewBinding.loginPassword.transformationMethod = PasswordTransformationMethod()
+                viewBinding.loginPassword.apply {
+                    transformationMethod = PasswordTransformationMethod()
+                    setSelection(text.length)
+                }
                 viewBinding.loinPasswordVisibilityToggle.setImageResource(R.drawable.ic_visibility)
 
             }

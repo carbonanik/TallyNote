@@ -49,7 +49,7 @@ class VerifyNumberFragment : Fragment() {
         phone = args.phone
         pass = args.pass
 
-        viewModel.verifyForSignUp = !(name.isBlank())
+        viewModel.verifyForSignUp = name.isNotBlank()
     }
 
     private fun setObserver() {
@@ -94,7 +94,7 @@ class VerifyNumberFragment : Fragment() {
 
         viewModel.linkEmailPasswordSuccessful.observe(viewLifecycleOwner, Observer {
             if (it){
-                viewModel.allSuccess(name, phone)
+                viewModel.allSuccess(name)
                 openListActivity()
             }
         })

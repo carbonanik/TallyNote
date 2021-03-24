@@ -1,18 +1,18 @@
 package com.carbondev.tallynote.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.carbondev.tallynote.R
-import com.carbondev.tallynote.datamodel.Customer
 import com.carbondev.tallynote.databinding.CustomerItemLayoutBinding
-import com.carbondev.tallynote.utils.MainApplication
+import com.carbondev.tallynote.datamodel.Customer
 import com.carbondev.tallynote.view.viewmodel.ListViewModel
 
 
-class CustomerListAdapter(private val listViewModel: ListViewModel) : RecyclerView.Adapter<CustomerListAdapter.CustomerListViewHolder>() {
+class CustomerListAdapter(private val listViewModel: ListViewModel, private val context: Context) : RecyclerView.Adapter<CustomerListAdapter.CustomerListViewHolder>() {
 
 //    private var customersList : MutableList<Customer> = mutableListOf()
 
@@ -45,10 +45,10 @@ class CustomerListAdapter(private val listViewModel: ListViewModel) : RecyclerVi
     private fun animateItemView(holder: CustomerListViewHolder, position: Int) {
 
         if (previousBindingPosition < position){
-            holder.itemView.animation = AnimationUtils.loadAnimation(MainApplication.applicationContext(), R.anim.fade_transition_reverse_animation)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.fade_transition_reverse_animation)
             previousBindingPosition = position
         } else {
-            holder.itemView.animation = AnimationUtils.loadAnimation(MainApplication.applicationContext(), R.anim.fade_transition_animation)
+            holder.itemView.animation = AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation)
             previousBindingPosition = position
         }
     }

@@ -72,11 +72,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
 
         if (savedInstanceState == null ){
-        viewModel.init(this)
-//            println("savedInstanceState == null")
-//        } else {
-//            println("savedInstanceState != null")
-//
+            viewModel.init()
         }
 
         binding.customerListSearchView.setOnClickListener {

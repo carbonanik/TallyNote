@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <solid android:color="@color/BackgroundDim"/>
-    <corners android:topRightRadius="25dp"
-        android:bottomRightRadius="25dp"/>
+    <corners android:topRightRadius="@dimen/rounded_button_corner"
+        android:bottomRightRadius="@dimen/rounded_button_corner"/>
 
 
 </shape>

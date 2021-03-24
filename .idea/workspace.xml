@@ -11,6 +11,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="I/System.out" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -43,13 +44,55 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98b26a96-46d9-453b-a9a9-786876a495b0" name="Default Changelist" comment="" />
+    <list default="true" id="98b26a96-46d9-453b-a9a9-786876a495b0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/custom_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Tally_Note.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Tally_Note.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/repository/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/repository/AuthRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/repository/FirebaseDataRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/repository/FirebaseDataRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/utils/MainApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/utils/ViewBinding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/utils/ViewBinding.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/activity/ListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/activity/ListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/adapter/CustomerListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/adapter/CustomerListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/ForgetPasswordFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/ForgetPasswordFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/SignupFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/SignupFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/VerifyNumberFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/fragments/VerifyNumberFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/ForgrtPasswordViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/ForgrtPasswordViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/ListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/ListViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/SignupViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/SignupViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/VerifyNumberViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/carbondev/tallynote/view/viewmodel/VerifyNumberViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/button_left_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/button_left_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/button_right_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/button_right_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/rounded_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/customer_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/customer_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/forgrt_password_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/forgrt_password_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/signup_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/signup_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/verify_number_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/verify_number_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Nexus_S_API_24]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -100,13 +143,13 @@
       <list>
         <option value="Kotlin Object" />
         <option value="layoutResourceFile_vertical" />
-        <option value="resourceFile" />
         <option value="navigationResourceFile" />
         <option value="layoutResourceFile" />
         <option value="Kotlin File" />
         <option value="valueResourceFile" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -162,6 +205,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="true" />
+    <property name="android-custom-viewC:/Users/anik-pc/.gradle/caches/modules-2/files-2.1/com.hbb20/ccp/2.3.7/eda298e6bc63dcb881693a6fb2caff7968a3bbe0/ccp-2.3.7-sources.jar!/com/hbb20/CountryCodePicker.java_SELECTED" value="CountryCodePicker" />
     <property name="android-custom-viewC:/Users/anik-pc/AppData/Local/Android/Sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
     <property name="android-custom-viewE:/AndroidStudioProjects/Tally Note/app/src/main/java/com/carbondev/tallynote/utils/MyKeyBoard.kt_SELECTED" value="MyKeyBoard" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
@@ -171,6 +215,7 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="memory.settings.postsync.last.time.stamp" value="1604688193872" />
+    <property name="multi-representation-previewC:/Users/anik-pc/.gradle/caches/modules-2/files-2.1/com.hbb20/ccp/2.3.7/eda298e6bc63dcb881693a6fb2caff7968a3bbe0/ccp-2.3.7-sources.jar!/com/hbb20/CountryCodePicker.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/anik-pc/AppData/Local/Android/Sdk/sources/android-30/android/view/View.java_selected" value="Custom views" />
     <property name="multi-representation-previewE:/AndroidStudioProjects/Tally Note/app/src/main/java/com/carbondev/tallynote/utils/MyKeyBoard.kt_selected" value="Custom views" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
@@ -470,18 +515,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="First Working Version&#10;1.0" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="173" y="118" width="1064" height="528" key="#Notifications" timestamp="1607455742102">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="173" y="118" width="1064" height="528" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1607455742102" />
     <state x="161" y="162" key="#PSD" timestamp="1610612309585">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="161" y="162" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1610612309585" />
-    <state x="275" y="5" key="#Plugins" timestamp="1607587260527">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="5" key="#Plugins/0.0.1366.728@0.0.1366.728" timestamp="1607587260527" />
     <state x="402" y="0" key="#app" timestamp="1610643498849">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -490,26 +527,34 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1610612313696" />
+    <state x="474" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1616391852041">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="474" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1616391852041" />
     <state x="276" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1614926191379">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="276" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1614926191379" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607274026673">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1615141082819">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1607274026673" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1615141082819" />
     <state x="382" y="95" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1614926313111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="382" y="95" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1614926313111" />
-    <state x="-4" y="139" width="983" height="387" key="AVDManager" timestamp="1610644683597">
+    <state x="-4" y="139" width="983" height="387" key="AVDManager" timestamp="1616497428452">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="-4" y="139" width="983" height="387" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1610644683597" />
-    <state x="527" y="154" key="AndroidCreateXmlResourceDialog" timestamp="1607335402432">
+    <state x="-4" y="139" width="983" height="387" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1616497428452" />
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog" timestamp="1615094124823">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="527" y="154" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1607335402432" />
+    <state x="263" y="119" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1615094124823" />
+    <state x="632" y="202" key="AndroidCreateXmlResourceDialog" timestamp="1616227746788">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="632" y="202" key="AndroidCreateXmlResourceDialog/0.0.1366.728@0.0.1366.728" timestamp="1616227746788" />
     <state x="310" y="0" key="CommitChangelistDialog2" timestamp="1614927316875">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -518,22 +563,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1609302167455" />
-    <state width="1323" height="249" key="GridCell.Tab.0.bottom" timestamp="1613417049561">
+    <state width="1323" height="249" key="GridCell.Tab.0.bottom" timestamp="1616524880009">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1613417049561" />
-    <state width="1323" height="249" key="GridCell.Tab.0.center" timestamp="1613417049560">
+    <state width="1323" height="249" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1616524880009" />
+    <state width="1323" height="249" key="GridCell.Tab.0.center" timestamp="1616524880009">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1613417049560" />
-    <state width="1323" height="249" key="GridCell.Tab.0.left" timestamp="1613417049559">
+    <state width="1323" height="249" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1616524880009" />
+    <state width="1323" height="249" key="GridCell.Tab.0.left" timestamp="1616524880009">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1613417049559" />
-    <state width="1323" height="249" key="GridCell.Tab.0.right" timestamp="1613417049560">
+    <state width="1323" height="249" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1616524880009" />
+    <state width="1323" height="249" key="GridCell.Tab.0.right" timestamp="1616524880009">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="249" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1613417049560" />
+    <state width="1323" height="249" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1616524880009" />
     <state x="192" y="20" width="916" height="708" key="SettingsEditor" timestamp="1609081313744">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -542,14 +587,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="513" y="233" key="VCS.EditChangelistDialog/0.0.1366.728@0.0.1366.728" timestamp="1614927113899" />
-    <state x="357" y="57" width="866" height="536" key="find.popup" timestamp="1613412021470">
+    <state x="357" y="57" width="866" height="624" key="find.popup" timestamp="1615099564564">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="357" y="57" width="866" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1613412021470" />
-    <state x="371" y="99" width="752" height="667" key="search.everywhere.popup" timestamp="1609399166702">
+    <state x="357" y="57" width="866" height="624" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1615099564564" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1615107338145">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="371" y="99" width="752" height="667" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1609399166702" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1615107338145" />
+    <state x="324" y="35" width="752" height="667" key="search.everywhere.popup" timestamp="1616524061423">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="324" y="35" width="752" height="667" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1616524061423" />
   </component>
   <component name="gradleExecuteTaskHistory">
     <option value="" />

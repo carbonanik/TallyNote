@@ -37,23 +37,7 @@ object FirebaseDataRepository {
 
 
     private var auth = FirebaseAuth.getInstance()
-
-    private var ref = FirebaseDatabase.getInstance().reference
-
     private const val lastEdited = "lastEdited"
-
-//    private fun numberExists(){
-//        ref.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//            }
-//            override fun onCancelled(databaseError: DatabaseError) {
-//            }
-//        })
-//    }
-
-//    fun enableOffline(){
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-//    }
 
     // Customer **********************************************
 
@@ -167,9 +151,6 @@ object FirebaseDataRepository {
         }
     }
 
-
-
-
     fun fetchAllSellForThisCustomer(customerKey : String){
         fetchAllSell()
         if (customerKey.isNotEmpty()) {
@@ -230,7 +211,7 @@ object FirebaseDataRepository {
 
 
 
-    // save note ***************************************************
+    // note ***************************************************
 
     fun saveNote(note: Note){
         val userRef = userRef()
@@ -257,27 +238,8 @@ object FirebaseDataRepository {
         if (userRef != null && note.key.isNotEmpty()) {
             note.lastEdited = System.currentTimeMillis()
             userRef.child(NOTE).child(note.key).setValue(note)
-//            userRef.child(NOTE).child(note.key).child(lastEdited).setValue(System.currentTimeMillis())
         }
     }
-
-//    private fun checkIfLogin(): Boolean {
-//        return auth.currentUser != null
-//    }
-
-    private fun getUid(): String? = auth.currentUser?.uid
-
-    private fun userRef(): DatabaseReference? { // ~
-        var ref : DatabaseReference? = null
-        val uid : String? = getUid()
-
-        if (!uid.isNullOrEmpty()) {
-            ref = FirebaseDatabase.getInstance().reference.child(USERS).child(uid)
-        }
-        return ref
-    }
-
-    // fetch note ******************************************************
 
     fun fetchAllNote(){
         val userRef = userRef()
@@ -318,10 +280,6 @@ object FirebaseDataRepository {
 
     }
 
-//    fun deleteSell(sellKey : String){
-//        userRef().child(SELL).child(sellKey).removeValue()
-//    }
-
     fun deleteNote(noteKey : String){
 
         if (noteKey.isNotEmpty()){
@@ -335,33 +293,7 @@ object FirebaseDataRepository {
         mOpenNote.value = Note()
     }
 
-    fun saveThisNumberToServer(fullPhoneNumber : String){
-        val newKew = ref.child("applicationPublic").child("phoneNumber").push().key
-        if (!newKew.isNullOrEmpty()){
-            ref.child("applicationPublic").child("phoneNumber").child(newKew).setValue(fullPhoneNumber)
-        }
-    }
-
-    fun saveNameToFirebase(userName : String){
-        if (userName.isNotEmpty()){
-            val userRef = userRef()
-            userRef?.child("data")?.child("name")?.setValue(userName)
-        }
-    }
-
-    fun fetchOwnerName(){
-        val userRef = userRef()
-
-        userRef?.child("data")?.child("name")?.addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                mOwnerName.value = dataSnapshot.value as String?
-            }
-        })
-    }
-
+    // library ******************************************************
     fun getLibraryFilteredList(queryText : String, isName: Boolean){
         val libraryRef = if (isName)
             userRef()?.child(LIBRARY_NAME)
@@ -424,48 +356,38 @@ object FirebaseDataRepository {
         if (newKey != null){
             userRef.child(newKey).setValue(library)
         }
+    }
 
-//        userRef
-//            ?.orderByChild("detail")
-//            ?.startAt(library.detail)
-//            ?.limitToFirst(1)
-//            ?.addListenerForSingleValueEvent(object : ValueEventListener {
-//
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (sellSnapshot in dataSnapshot.children) {
-//                    val l = sellSnapshot.getValue(Library::class.java) ?: Library()
-//                    if (l.detail == library.detail) {
-//                        val oldKey = sellSnapshot.key
-//
-//                        oldKey?.let {
-//                            userRef.child(it).child("usedCount").setValue(l.usedCount + 1)
-//                            println("match found -- count increased")
-//                            println(l.detail)
-//
-//                        }
-//                    } else {
-//                        val newKey = userRef.push().key
-//
-//                        if (newKey != null){
-//                            userRef.child(newKey).setValue(library)
-//                            println("half match -- product added")
-//                            println(l.detail)
-//                        }
-//                    }
-//                }
-//                if (dataSnapshot.childrenCount == 0L) {
-//                    val newKey = userRef.push().key
-//
-//                    if (newKey != null){
-//                        userRef.child(newKey).setValue(library)
-//                        println("no match -- product added")
-//                        println(dataSnapshot.value)
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {}
-//        })
+    fun saveNameToFirebase(userName : String){
+        if (userName.isNotEmpty()){
+            val userRef = userRef()
+            userRef?.child("data")?.child("name")?.setValue(userName)
+        }
+    }
+
+    fun fetchOwnerName(){
+        val userRef = userRef()
+
+        userRef?.child("data")?.child("name")?.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                mOwnerName.value = dataSnapshot.value as String?
+            }
+        })
+    }
+
+    private fun getUid(): String? = auth.currentUser?.uid
+
+    private fun userRef(): DatabaseReference? { // ~
+        var ref : DatabaseReference? = null
+        val uid : String? = getUid()
+
+        if (!uid.isNullOrEmpty()) {
+            ref = FirebaseDatabase.getInstance().reference.child(USERS).child(uid)
+        }
+        return ref
     }
 }
 

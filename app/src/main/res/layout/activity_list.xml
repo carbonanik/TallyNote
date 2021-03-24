@@ -15,17 +15,6 @@
         android:background="@color/Foreground"
         tools:context=".view.activity.ListActivity">
 
-        <View
-            android:id="@+id/view5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="411dp"
-            android:layout_marginLeft="411dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <SearchView
             android:id="@+id/customer_list_searchView"
             android:layout_width="0dp"
@@ -112,33 +101,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Owner Name" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textView8"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="4dp"-->
-<!--                android:layout_marginRight="4dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:text="@{listViewModel.ownerDueOrAdv}"-->
-<!--                android:textColor="@color/Foreground"-->
-<!--                android:textSize="14sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/textView7"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/textView35"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/textView7"-->
-<!--                tools:text="Due : " />-->
-
             <TextView
                 android:id="@+id/ownerTotalDue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:dueOrAdv="@{listViewModel.ownerTotalDue}"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:textColor="@color/Foreground"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:dueOrAdvLD="@{listViewModel.ownerTotalDue}"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView7"
