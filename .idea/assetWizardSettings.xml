@@ -33,9 +33,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_baseline_edit_24" />
-                            <entry key="sourceFile" value="C:\Users\anik-pc\Documents\Work\Inkscape\tally note logo small.svg" />
+                            <entry key="outputName" value="ic_launcher" />
+                            <entry key="sourceFile" value="E:\Work\Tally Note\ic_launcher.svg" />
                           </map>
                         </option>
                       </PersistentState>

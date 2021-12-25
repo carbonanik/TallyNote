@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.carbondev.tallynote.R
 import com.carbondev.tallynote.databinding.NoteListItemBinding
+import com.carbondev.tallynote.datamodel.Note
 import com.carbondev.tallynote.view.viewmodel.NoteListViewModel
 
 class NoteListAdapter(private val noteListViewModel: NoteListViewModel) : RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder>() {
@@ -30,34 +31,42 @@ class NoteListAdapter(private val noteListViewModel: NoteListViewModel) : Recycl
 
     override fun onBindViewHolder(holder: NoteListViewHolder, position: Int) {
         val note = noteListViewModel.liveNoteList.value!![position]
-        holder.bind( shortTitle( note.content ), note.createdAt , noteListViewModel, note.key)
+//        holder.bind( shortTitle( note.content ), note.createdAt , noteListViewModel, note.key)
+        holder.bind(note, noteListViewModel)
     }
 
 
     private fun shortTitle(title: String): String {
-        val t2 = title.take(20)
-        return if (title.length > 20){
-            "$t2..."
+        val trim = title.trim()
+        return if (trim.length >= 24) {
+            val take20 = trim.take(20).replace("\n", " ")
+            val ellipsis = "\u2026"
+            "$take20$ellipsis"
         } else {
-            t2
+            trim
         }
     }
 
 
-    class NoteListViewHolder(v: NoteListItemBinding) : RecyclerView.ViewHolder(v.root){
-        private val noteListItemBinding = v
+    class NoteListViewHolder(val binding: NoteListItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(
-            title: String,
-            date: String,
-            noteListViewModel: NoteListViewModel,
-            noteKey: String
-        ) {
-            noteListItemBinding.title = title
-            noteListItemBinding.date = date
-            noteListItemBinding.noteKey = noteKey
-            noteListItemBinding.noteListViewModel = noteListViewModel
-            noteListItemBinding.executePendingBindings()
+        fun bind(note: Note, viewModel: NoteListViewModel) {
+            binding.note = note
+            binding.noteListViewModel = viewModel
+            binding.executePendingBindings()
         }
+
+//        fun bind(
+//            title: String,
+//            date: String,
+//            noteListViewModel: NoteListViewModel,
+//            noteKey: String
+//        ) {
+//            noteListItemBinding.title = title
+//            noteListItemBinding.date = date
+//            noteListItemBinding.noteKey = noteKey
+//            noteListItemBinding.noteListViewModel = noteListViewModel
+//            noteListItemBinding.executePendingBindings()
+//        }
     }
 }

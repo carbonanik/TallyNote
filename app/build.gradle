@@ -15,8 +15,8 @@ android {
         applicationId "com.carbondev.tallynote"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 7
-        versionName "1.15"
+        versionCode 10
+        versionName "1.18"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
@@ -73,8 +73,10 @@ dependencies {
 
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.google.firebase:firebase-auth:20.0.2'
-    implementation 'com.google.firebase:firebase-database:19.6.0'
+
+    implementation 'com.google.firebase:firebase-auth:18.0.0'
+    implementation 'com.google.firebase:firebase-database:18.0.0'
+
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.2' // sweep decorator
     implementation 'com.hbb20:ccp:2.3.7'
     implementation 'net.objecthunter:exp4j:0.4.8' // string calculation
@@ -82,6 +84,8 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:input:3.3.0'
     implementation 'com.afollestad.material-dialogs:lifecycle:3.2.1'
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2' // soft keyboard handle
+
+    implementation 'com.google.code.gson:gson:2.8.9'
 
 
     testImplementation 'junit:junit:4.13.1'

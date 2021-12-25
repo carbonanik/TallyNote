@@ -40,30 +40,27 @@ class ForgetPasswordFragment : Fragment() {
     }
 
     private fun setObserver(){
-//        viewModel.numberExists.observe(viewLifecycleOwner, Observer {
-//            if (it){
-//                viewModel.verifyNumber(requireActivity())
-//            } else {
-//                viewModel.info.value = "This Number Dose not Have An Account"
-//                viewModel.isLoading.value = false
-////                //verify this new number
-//            }
-//        })
-
         viewModel.storedVerificationId.observe(viewLifecycleOwner, Observer {
-            if (it.isNotBlank()){
+            if (!it.isNullOrEmpty()){
                 viewModel.processing.value = false
+
+                val action = ForgetPasswordFragmentDirections.actionForgetPasswordFragmentToVerifyNumberFragment(
+                    viewModel.forgetPassword.value!!,
+                    viewModel.phoneNumberWithCountryCode,
+                    ""
+                )
+                navController.navigate(action)
             }
         })
 
         viewModel.accountExist.observe(viewLifecycleOwner, {
-            if (it){
+            if (it == true){
                 val text = "This Number Already Exist"
                 println(text)
 //                viewModel.info.value = text
                 viewModel.verifyNumber(requireActivity())
 
-            } else {
+            } else if (it == false) {
                 val text = "This number dose not exist"
                 println(text)
                 viewModel.info.value = text

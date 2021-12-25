@@ -13,7 +13,7 @@ class VerifyNumberViewModel : ViewModel() {
     private val remoteData = FirebaseDataRepository
 
     val info = MutableLiveData<String>()
-    val isLoading = MutableLiveData<Boolean>()
+    val processing = MutableLiveData<Boolean>()
     val receivedCode = MutableLiveData<String>()
 //    val verifySignInCodeButtonClicks = MutableLiveData<Boolean>().apply { value = false }
 
@@ -29,6 +29,9 @@ class VerifyNumberViewModel : ViewModel() {
     val linkEmailPasswordSuccessful : LiveData<Boolean>
         get() = authRepository.linkEmailPasswordSuccessful
 
+    val passwordChanged : LiveData<Boolean>
+        get() = authRepository.passwordChanged
+
     var verifyForSignUp = true
 
 //    fun verifySignInCodeButtonClicks(){
@@ -42,7 +45,7 @@ class VerifyNumberViewModel : ViewModel() {
             info.value = "Put Your Verification Code!"
 
         } else {
-            isLoading.value = true
+            processing.value = true
             info.value = "Please wait For Verification Complete"
             // sign in with phone number credential
             authRepository.signInWithPhoneAuthCredential(code!!, activity)

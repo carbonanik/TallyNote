@@ -38,21 +38,10 @@ class MyKeyBoard(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
     constructor(context: Context?) : this(context, null, 0)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
 
-//    private enum class ClickType {
-//        OPERATOR,
-//        NUMBER,
-//        EQUAL,
-//        PERCENTAGE,
-//        NON
-//    }
-
-//    private var lastClick = ClickType.NON
     private var equalPressed = false
 
-//    private var lastOperator = Operator.ADDITION
-
     private var inputConnection: InputConnection? = null
-    private fun init(context: Context?, attrs: AttributeSet?) {
+    init {
 
         // initialize buttons
         LayoutInflater.from(context).inflate(R.layout.calculator_keybord, this, true)
@@ -124,7 +113,7 @@ class MyKeyBoard(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
 
     private fun numberClick(number: String) {
         if (equalPressed) {
-            ac() // todo
+            ac()
         }
         inputConnection!!.commitText(number, 1)
         equalPressed = false
@@ -168,11 +157,6 @@ class MyKeyBoard(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
 
     private fun percentageClick() {
         percentageOfLast(textFromField())
-//        if (lastClick == ClickType.NUMBER && (lastOperator == Operator.ADDITION || lastOperator == Operator.SUBTRACTION)) {
-//            val pl = percentageOfLast(textFromField())
-//            commitResult(pl)
-//        }
-//        lastClick = ClickType.PERCENTAGE
     }
 
     private fun percentageOfLast(strExp: String) {
@@ -258,11 +242,6 @@ class MyKeyBoard(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
 
     private fun ac(){
         clearField()
-//        equalPressed = false
-//        lastOperator = Operator.ADDITION
-//        lastClick = ClickType.NON
-//        cal.initNum(ZERO)
-//        currentInput = ""
     }
 
     private fun clearField(){
@@ -277,9 +256,5 @@ class MyKeyBoard(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
 
     fun setInputConnection(ic: InputConnection?) {
         inputConnection = ic
-    }
-
-    init {
-        init(context, attrs)
     }
 }

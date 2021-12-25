@@ -19,7 +19,7 @@ import com.carbondev.tallynote.view.activity.ListActivity
 import com.carbondev.tallynote.view.viewmodel.LoginViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(){
 
     private lateinit var viewModel: LoginViewModel
     private lateinit var viewBinding: LoginFragmentBinding
@@ -40,22 +40,6 @@ class LoginFragment : Fragment() {
         navController = this.findNavController()
 
         setObservers()
-
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-
-            val states = arrayOf(
-                intArrayOf(android.R.attr.state_enabled),
-                intArrayOf(-android.R.attr.state_enabled)
-            )
-            val colors = intArrayOf(
-                Color.parseColor("#0054AC"),
-                Color.parseColor("#818181")
-            )
-            val colorStates = ColorStateList(states,colors)
-
-            viewBinding.loginButton.backgroundTintList = colorStates
-        }
 
         return viewBinding.root
     }
@@ -91,6 +75,7 @@ class LoginFragment : Fragment() {
         })
 
         viewModel.loginSuccessful.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
             viewModel.processingLogin.value = false
             if (it && FirebaseAuth.getInstance().currentUser != null){
                 viewModel.info.value = "Login Successful"
@@ -100,6 +85,7 @@ class LoginFragment : Fragment() {
         })
 
         viewModel.logInErrorMassage.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
             viewModel.info.value = it
         })
 

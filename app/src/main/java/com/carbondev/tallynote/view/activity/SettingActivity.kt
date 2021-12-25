@@ -1,5 +1,6 @@
 package com.carbondev.tallynote.view.activity
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -12,9 +13,13 @@ import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.carbondev.tallynote.R
 import com.carbondev.tallynote.databinding.ActivitySettingBinding
+import com.carbondev.tallynote.datamodel.Customer
+import com.carbondev.tallynote.repository.FirebaseDataRepository
 import com.carbondev.tallynote.utils.MyPreference
 import com.carbondev.tallynote.view.viewmodel.SettingViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
+import java.io.InputStream
 import java.util.*
 
 class SettingActivity : AppCompatActivity() {
@@ -39,10 +44,6 @@ class SettingActivity : AppCompatActivity() {
     private fun setupBinding(savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
 
-        if (savedInstanceState == null) {
-            viewModel.init()
-        }
-
         binding =
             DataBindingUtil.setContentView<ActivitySettingBinding>(this, R.layout.activity_setting)
                 .apply {
@@ -65,18 +66,12 @@ class SettingActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
-        viewModel.fbLinkClick.observe(this, {
-            if (it) {
-                openFacebookLink()
-                viewModel.fbLinkClick.value = false
-            }
-        })
-
         viewModel.ownerNameEditButtonClick.observe(this, {
             if (it) {
                 MaterialDialog(this).show {
                     input(
-                        hint = getString(R.string.your_name)
+                        hint = getString(R.string.your_name),
+                        prefill = viewModel.ownerName.value
                     ) { _, text ->
                         if (text.isNotBlank()) {
                             viewModel.submitName(text.toString())
@@ -112,10 +107,21 @@ class SettingActivity : AppCompatActivity() {
                 viewModel.languageChangeButtonClick.value = false
             }
         })
+
+        binding.facebookPage.setOnClickListener {
+            openFacebookLink()
+        }
+
+        binding.shareApp.setOnClickListener {
+            openPlayStore()
+        }
+        binding.raw.setOnClickListener {
+            openRaw()
+        }
     }
 
     private fun changeLanguage() {
-        val languageToLoad  = preference.getLanguage()
+        val languageToLoad = preference.getLanguage()
         val locale = Locale(languageToLoad!!)
         Locale.setDefault(locale)
         val config = Configuration()
@@ -130,9 +136,39 @@ class SettingActivity : AppCompatActivity() {
 
 
     private fun openFacebookLink() {
-        val openURL = Intent(Intent.ACTION_VIEW)
-        openURL.data = Uri.parse("https://web.facebook.com/Tally-help-review-102954997990047")
-        startActivity(openURL)
+//        val openURL = Intent(Intent.ACTION_VIEW)
+//        openURL.data = Uri.parse("https://www.facebook.com/tallynote.info/")
+//        startActivity(openURL)
+//
+        try {
+            packageManager.getPackageInfo("com.facebook.katana", 0)
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/101045342101746")))
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.facebook.com/tallynote.info/")
+                )
+            )
+        }
+    }
+
+    private fun openPlayStore() {
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Share The App")
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            "https://play.google.com/store/apps/details?id=$packageName"
+        )
+        startActivity(Intent.createChooser(intent, "Share The App With Others"))
+//        try {
+//            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+//        } catch (e: ActivityNotFoundException) {
+//            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+//        }
     }
 
     private fun restartActivity() {
@@ -140,5 +176,19 @@ class SettingActivity : AppCompatActivity() {
         finish()
     }
 
+    fun openRaw() {
+//        val strm = resources.openRawResource(R.raw.customers)
+//        val json = strm.bufferedReader().readText()
+//        val customers = Gson().fromJson(json, Customers::class.java).customer
+//        customers.forEach {
+//            viewModel.saveOldCustomer(it)
+//        }
+    }
+
+    data class Customers(
+        val customer: List<Customer>
+    )
+
 }
+
 

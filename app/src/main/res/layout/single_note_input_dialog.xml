@@ -21,6 +21,8 @@
             android:inputType="textShortMessage|textMultiLine"
             android:padding="20dp"
             android:text="@={inputString}"
+            android:textColor="@color/darkText"
+            android:textColorHint="@color/hintText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

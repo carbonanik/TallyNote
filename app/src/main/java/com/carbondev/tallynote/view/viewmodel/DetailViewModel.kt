@@ -5,21 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.carbondev.tallynote.R
-import com.carbondev.tallynote.view.adapter.CustomerDetailPagerAdapter
-import com.carbondev.tallynote.view.adapter.HistorySellAdapter
 import com.carbondev.tallynote.datamodel.Customer
 import com.carbondev.tallynote.datamodel.Sell
 import com.carbondev.tallynote.datamodel.typePayment
 import com.carbondev.tallynote.repository.FirebaseDataRepository
 import com.carbondev.tallynote.utils.DateTimeString
 import com.carbondev.tallynote.utils.MyDateFormat
-import com.carbondev.tallynote.utils.SCal
+import com.carbondev.tallynote.utils.StringNumberCalculator
+import com.carbondev.tallynote.view.adapter.CustomerDetailPagerAdapter
+import com.carbondev.tallynote.view.adapter.HistorySellAdapter
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel() : ViewModel() {
 
+    var context: Context? = null
     private val remoteDataRepo = FirebaseDataRepository
 
     private var historySellAdapter : HistorySellAdapter? = null
@@ -35,7 +35,7 @@ class DetailViewModel : ViewModel() {
 
     val dueOrAdv = MutableLiveData<String>()
     val dueOrAdvAmount = MutableLiveData<String>()
-    private val pickedDate = MutableLiveData<String>()
+//    private val pickedDate = MutableLiveData<String>()
 
     val onEditCustomerClick = MutableLiveData<Boolean>()
     val onCartClick = MutableLiveData<Boolean>()
@@ -43,11 +43,9 @@ class DetailViewModel : ViewModel() {
     val onDatePickerClick = MutableLiveData<Boolean>()
     val onDeleteCustomerClick = MutableLiveData<Boolean>()
 
-    var detailActivityContext : Context? = null
 
-
-    fun init(customerKey : String, context: Context){
-        detailActivityContext = context
+    fun init(customerKey: String, context: Context){
+        this.context = context
         declareAdapters()
 
         emptyCustomer()
@@ -55,8 +53,6 @@ class DetailViewModel : ViewModel() {
 
         getSingleCustomer(customerKey)
         getAllSellForThisCustomer(customerKey)
-
-
     }
 
     private fun getSingleCustomer(key: String){
@@ -101,13 +97,14 @@ class DetailViewModel : ViewModel() {
     }
 
     fun payDue(payAmount: String, note: String) {
-
+        val sell = Sell() // Empty Sell
+        // due before this transaction
+        sell.beforeDue = currentCustomer.value!!.totalDue
         //update openCustomer total due
-        val sc = SCal(currentCustomer.value!!.totalDue, payAmount)
+        val sc = StringNumberCalculator(currentCustomer.value!!.totalDue, payAmount)
         currentCustomer.value!!.totalDue = sc.sub()
 
-        //add sell
-        val sell = Sell()
+        //add value to sell
         sell.customerKey = currentCustomer.value!!.key
         sell.customerName = currentCustomer.value!!.name
         sell.type = typePayment
@@ -117,7 +114,6 @@ class DetailViewModel : ViewModel() {
         sell.note = note
 
         remoteDataRepo.saveSell(sell)
-
         remoteDataRepo.updateCustomer(currentCustomer.value!!)
     }
 
@@ -134,10 +130,10 @@ class DetailViewModel : ViewModel() {
     fun calculateDueOrAdv(){
         val d = currentCustomer.value!!.totalDue
         if (d[0] == '-'){
-            dueOrAdv.value = detailActivityContext!!.getString(R.string.adv)
+            dueOrAdv.value = context?.getString(R.string.adv)
             dueOrAdvAmount.value = d.substring(1)
         } else{
-            dueOrAdv.value = detailActivityContext!!.getString(R.string.due)
+            dueOrAdv.value = context?.getString(R.string.due)
             dueOrAdvAmount.value = d
         }
     }
@@ -147,9 +143,9 @@ class DetailViewModel : ViewModel() {
 
         val calendar = Calendar.getInstance()
         calendar.set(year, monthOfYear, dayOfMonth)
-        val m = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
+//        val m = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
 
-        pickedDate.value = "$dayOfMonth/$m/$year"
+//        pickedDate.value = "Select The Date You Want To Go"//"$dayOfMonth/$m/$year"
         val position = findClosest(calendar.timeInMillis)
         detailPagerAdapter?.goSearchPosition(position)
     }
@@ -192,7 +188,9 @@ class DetailViewModel : ViewModel() {
     }
 
     fun deleteCustomer() {
-        remoteDataRepo.deleteCustomer(currentCustomer.value!!.key)
+        if (!currentCustomer.value?.key.isNullOrEmpty()){
+            remoteDataRepo.deleteCustomer(currentCustomer.value!!.key)
+        }
     }
 }
 

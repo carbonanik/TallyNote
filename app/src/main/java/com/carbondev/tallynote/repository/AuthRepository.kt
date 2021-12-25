@@ -90,27 +90,26 @@ object AuthRepository {
     }
 
     fun verifyNumber(phoneNumberWithCountryCode: String, activity: Activity){
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//            phoneNumberWithCountryCode,         // Phone number to verify
-//            60,                 // Timeout duration
-//            TimeUnit.SECONDS,   // Unit of timeout
-//            activity, // Activity (for callback binding)
-//            callbacks
-//        )          // OnVerificationStateChangedCallbacks
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+            phoneNumberWithCountryCode,         // Phone number to verify
+            60,                 // Timeout duration
+            TimeUnit.SECONDS,   // Unit of timeout
+            activity, // Activity (for callback binding)
+            callbacks
+        )          // OnVerificationStateChangedCallbacks
 
-        val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber(phoneNumberWithCountryCode) // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(activity) // Activity (for callback binding)
-            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
-            .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
+//        val options = PhoneAuthOptions.newBuilder(auth)
+//            .setPhoneNumber(phoneNumberWithCountryCode) // Phone number to verify
+//            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+//            .setActivity(activity) // Activity (for callback binding)
+//            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+//            .build()
+//        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-
             val smsCode = credential.smsCode
             if (smsCode != null){
                 mRetrieveSmsCode.value = smsCode
@@ -119,11 +118,7 @@ object AuthRepository {
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-
             mVerificationFaild.value = true
-//            println("callback")
-//            println(e.message)
-//            mAuthInfo.value = e.message // todo
         }
 
         override fun onCodeSent(
@@ -131,6 +126,7 @@ object AuthRepository {
             token: PhoneAuthProvider.ForceResendingToken
         ) {
             mStoredVerificationId.value = verificationId
+            println(verificationId)
         }
     }
 
@@ -203,6 +199,7 @@ object AuthRepository {
             .addOnCompleteListener { task ->
                 val isNewUser = task.result!!.signInMethods!!.isEmpty()
                 mAccountExist.value = !isNewUser
+                println(mAccountExist.value)
             }
     }
 

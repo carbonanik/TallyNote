@@ -3,14 +3,13 @@ package com.carbondev.tallynote.view.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.carbondev.tallynote.view.adapter.SellItemAdapter
 import com.carbondev.tallynote.datamodel.Customer
 import com.carbondev.tallynote.datamodel.Library
 import com.carbondev.tallynote.datamodel.Product
 import com.carbondev.tallynote.datamodel.Sell
 import com.carbondev.tallynote.repository.FirebaseDataRepository
 import com.carbondev.tallynote.utils.DateTimeString
-import com.carbondev.tallynote.utils.SCal
+import com.carbondev.tallynote.view.adapter.SellItemAdapter
 
 class SellCartViewModel: ViewModel() {
 
@@ -59,31 +58,25 @@ class SellCartViewModel: ViewModel() {
         }
     }
 
-    // add total sell cart list to database
-    // update customer
-    // for first product of sell curt list
+    // Creating New Sell Adding First Product
     private fun createSellAddProduct(){
-        println("createSellAddProduct")
         val sell = Sell()
-        val product = inputProduct.value!!
-        val customer = openCustomer.value!!
+        val product = inputProduct.value!! // user input for product
+        val customer = openCustomer.value!! //
 
-        sell.customerKey = openCustomer.value!!.key
+        sell.customerKey = openCustomer.value!!.key // reference of customer key
         sell.customerName = openCustomer.value!!.name
         sell.date = DateTimeString().now()
         sell.products = arrayListOf(product)
         sell.totalPrice = product.price
         sell.due = product.price
+        sell.beforeDue = customer.totalDue // total due before this transaction
 
-        val sc = SCal(customer.totalTransaction, product.price)
-        customer.totalTransaction = sc.add()
+        customer.totalTransaction = add(customer.totalTransaction, product.price)
 
-        val sc2 = SCal(customer.totalDue, product.price)
-        val td = sc2.add()
-
-        customer.totalDue = td  // total due after sell in customer
-        sell.beforeDue = td // total due after sell in sell history
-        sell.afterDue = td
+        val afterTotalDue = add(customer.totalDue, product.price)
+        customer.totalDue = afterTotalDue  // total due after sell in customer
+        sell.afterDue = afterTotalDue
 
         remoteDataRepo.saveSell(sell)
         remoteDataRepo.updateCustomer(customer)
@@ -96,87 +89,72 @@ class SellCartViewModel: ViewModel() {
     // update sell and customer to database
     // for non-first product of sell curt list
     private fun addProductToCurrentSell(){
-        println("addProductToCurrentSell")
         val product = inputProduct.value!!
         val sell = openSell.value!!
         val customer = openCustomer.value!!
 
         sell.products.add(product)
+        sell.totalPrice = add(sell.totalPrice, product.price) // add product price to sell total price
+        sell.due = add(sell.due, product.price) // add product price to due amount
+        customer.totalTransaction = add(customer.totalTransaction, product.price) //add product price to customers total transaction
 
-        val sc1 = SCal(sell.totalPrice, product.price)
-        sell.totalPrice = sc1.add()
-
-        val sc2 = SCal(sell.due, product.price)
-        sell.due = sc2.add()
-
-        val sc3 = SCal(customer.totalTransaction, product.price)
-        customer.totalTransaction = sc3.add()
-
-        val sc4 = SCal(customer.totalDue, product.price)
-        val td = sc4.add()
-
-        customer.totalDue = td
-        sell.beforeDue = td
-        sell.afterDue = td
+        val totalDue = add(customer.totalDue, product.price) // total due after adding this product to sell
+        customer.totalDue = totalDue
+        sell.afterDue = totalDue
 
         remoteDataRepo.updateSell(sell)
         remoteDataRepo.updateCustomer(customer)
-        this.inputProduct.value = Product()
+        this.inputProduct.value = Product() // clear product input field
         cursorGoUp.value = true
     }
 
     // add paid amount for current sell curt list
     fun addPaymentToSell(payAmount: String = "0", payAll : Boolean = false) {
 
-        val s = openSell.value!!
-        val c = openCustomer.value!!
+        val sell = openSell.value!!
+        val customer = openCustomer.value!!
 
-        if (payAll || s.totalPrice.toDouble() <= payAmount.toDouble()) {
-            s.paid = s.totalPrice
-            s.due = "0"
+        if (payAll || sell.totalPrice.toDouble() <= payAmount.toDouble()) {
+            sell.paid = sell.totalPrice
+            sell.due = "0"
 
             if (previousPaid != "0"){
-                val sc4 = SCal(c.totalDue, previousPaid)
-                val td = sc4.add()
-                c.totalDue = td
-                s.afterDue = td
+                val td = add(customer.totalDue, previousPaid)
+                customer.totalDue = td
+                sell.afterDue = td
             }
 
-            val sc3 = SCal(c.totalDue, s.totalPrice)
-            val td2 = sc3.sub()
-            c.totalDue = td2
-            s.afterDue = td2
+            val td2 = sub(customer.totalDue, sell.totalPrice)
+            customer.totalDue = td2
+            sell.afterDue = td2
 
-            previousPaid = s.totalPrice
+            previousPaid = sell.totalPrice
 
         } else {
-            s.paid = payAmount
+            sell.paid = payAmount
 
 
             // minus paid from sell due
-            val sc1 = SCal(s.totalPrice, payAmount)
-            s.due = sc1.sub()
+            sell.due = sub(sell.totalPrice, payAmount)
 
             // if previously paid for this sell then remove previous paid for pay again
             if (previousPaid != "0"){
-                val sc3 = SCal(c.totalDue, previousPaid)
-                val td = sc3.add()
-                c.totalDue = td
-                s.afterDue = td
+                val td = add(customer.totalDue, previousPaid)
+                customer.totalDue = td
+                sell.afterDue = td
             }
 
             // minus paid amount from customer total due
-            val sc2 = SCal(c.totalDue, payAmount)
-            val td2 = sc2.sub()
-            c.totalDue = td2
-            s.afterDue = td2
+            val td2 = sub(customer.totalDue, payAmount)
+            customer.totalDue = td2
+            sell.afterDue = td2
 
             previousPaid = payAmount
 
         }
 
-        remoteDataRepo.updateSell(s)
-        remoteDataRepo.updateCustomer(c)
+        remoteDataRepo.updateSell(sell)
+        remoteDataRepo.updateCustomer(customer)
     }
 
 
@@ -213,5 +191,9 @@ class SellCartViewModel: ViewModel() {
     fun addLibraryItem(text: String?) {
         text?.let { remoteDataRepo.addLibraryItem(it, isName) }
     }
+
+    private fun add(firstNumber: String, secondNumber: String) = String.format("%.0f", (firstNumber.toDouble() + secondNumber.toDouble()))
+    private fun sub(firstNumber: String, secondNumber: String) = String.format("%.0f",(firstNumber.toDouble() - secondNumber.toDouble()))
+
 }
 

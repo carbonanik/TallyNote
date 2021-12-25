@@ -2,6 +2,7 @@ package com.carbondev.tallynote.utils
 
 
 import android.content.Context
+import android.content.SharedPreferences
 
 const val PREFERENCE_NAME = "SharedPreference"
 const val PREFERENCE_LANGUAGE = "Language"
@@ -9,7 +10,7 @@ const val PREFERENCE_LANGUAGE = "Language"
 class MyPreference(context : Context){
 
 
-    val preference = context.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE)
+    private val preference: SharedPreferences = context.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE)
 
     fun getLanguage() : String? {
         return preference.getString(PREFERENCE_LANGUAGE,"bn")

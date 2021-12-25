@@ -28,7 +28,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var viewModel: ListViewModel
     private lateinit var binding : ActivityListBinding
 
-    private var newAdded = false
+    private var  newCustomerAdded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +106,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
                 if (customer!!.name.isNotEmpty()){
                     viewModel.addNewCustomer(customer)
-                    newAdded = true
+                    newCustomerAdded = true
                 }
                 addCustomerDialog.dismiss()
             }
@@ -150,9 +150,9 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         viewModel.liveCustomerList.observe(this, {
             viewModel.customerList.value = viewModel.liveCustomerList.value
             viewModel.refreshList()
-            if (newAdded){
+            if (newCustomerAdded){
                 scrollToTop()
-                newAdded = false
+                newCustomerAdded = false
             }
         })
 

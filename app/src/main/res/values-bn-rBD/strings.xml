@@ -82,11 +82,14 @@
     <string name="adv_clone">অগ্রিম : </string>
     <string name="search">এখানে অনূসন্ধান করুন</string>
     <string name="ok">ঠিক আছে</string>
-    <string name="en">ইংরেজি</string>
+    <string name="en">English</string>
     <string name="bn">বাংলা</string>
     <string name="selected_language">বাংলা</string>
     <string name="language">ভাষা</string>
     <string name="edit_name">নাম সম্পাদন</string>
     <string name="change_language">ভাষা পরিবর্তন</string>
+    <string name="add_person">নতুন ব্যক্তি</string>
+    <string name="go_notes">নোটগুলি</string>
+    <string name="list_semicolon">\"তালিকা: \"</string>
 
 </resources>

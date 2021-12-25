@@ -45,7 +45,7 @@ class SignupFragment : Fragment() {
     private lateinit var watchList: List<EditText>
     private fun setObservers(){
         viewModel.storedVerificationId.observe(viewLifecycleOwner, {
-            if (it.isNotBlank()){
+            if (!it.isNullOrEmpty()){
                 viewModel.processingSignUp.value = false
 
                 val action = SignupFragmentDirections.actionSignupFragmentToVerifyNumberFragment(
@@ -70,12 +70,12 @@ class SignupFragment : Fragment() {
 //        })
 
         viewModel.accountExist.observe(viewLifecycleOwner, {
-            if (it){
+            if (it == true){
                 val text = "This Number Already Exist"
                 println(text)
                 viewModel.info.value = text
                 viewModel.processingSignUp.value = false
-            } else {
+            } else if (it == false) {
                 val text = "This number dose not exist"
                 println(text)
 //                viewModel.info.value = text

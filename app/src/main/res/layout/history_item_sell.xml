@@ -4,23 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="detailViewModel"
-            type="com.carbondev.tallynote.view.viewmodel.DetailViewModel" />
-        <variable
             name="sell"
             type="com.carbondev.tallynote.datamodel.Sell" />
-        <variable
-            name="beforeDueOrAdv"
-            type="String" />
-        <variable
-            name="afterDueOrAdv"
-            type="String" />
-        <variable
-            name="date"
-            type="String" />
-        <variable
-            name="position"
-            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +36,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:background="@color/Foreground"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingTop="5dp"
@@ -65,7 +49,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/no"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/darkText"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +64,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:text="@string/product"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/darkText"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +78,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:text="@string/detail"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/darkText"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +93,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:text="@string/price"
-                    android:textColor="@color/colorGray"
+                    android:textColor="@color/darkText"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -158,9 +142,9 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@{date}"
-                android:textColor="@color/Foreground"
-                android:textSize="14sp"
+                android:textColor="@color/darkText"
+                android:textSize="12sp"
+                app:dateString="@{sell.date}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Date" />
@@ -172,8 +156,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="16dp"
-                android:text="@{sell.totalPrice}"
-                android:textColor="@color/Foreground"
+                app:numberEnOrBn="@{sell.totalPrice}"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/history_product_list_recyclerView"
@@ -187,7 +171,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/total_clone"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/history_product_list_recyclerView" />
@@ -196,11 +180,11 @@
                 android:id="@+id/history_product_list_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#A6B0E4"
+                android:background="@color/Background"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-            <!--                app:setAdapter="@{detailViewModel.getHistoryProductAdapter(position)}" />-->
 
             <TextView
                 android:id="@+id/textView12"
@@ -208,8 +192,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@{sell.due}"
-                android:textColor="@color/Foreground"
+                app:numberEnOrBn="@{sell.due}"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView49"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +207,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:text="@string/due_clone"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView12"
                 app:layout_constraintEnd_toStartOf="@+id/textView12"
@@ -237,7 +221,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:text="@string/paid_clone"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView28"
                 app:layout_constraintTop_toBottomOf="@+id/history_product_list_recyclerView" />
@@ -248,8 +232,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@{sell.paid}"
-                android:textColor="@color/Foreground"
+                app:numberEnOrBn="@{sell.paid}"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -261,8 +245,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{beforeDueOrAdv}"
-                android:textColor="@color/Foreground"
+                app:beforeDueOrAdv="@{sell.beforeDue}"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/textView23"
@@ -273,32 +257,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{afterDueOrAdv}"
-                android:textColor="@color/Foreground"
+                app:afterDueOrAdv="@{sell.afterDue}"
+                android:textColor="@color/darkText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView49"
                 app:layout_constraintTop_toBottomOf="@+id/textView49"
                 tools:text="After Total Due: 0" />
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/textView29"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:text="Note :"-->
-            <!--                android:textStyle="bold"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/textView23" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/textView30"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                tools:text="This Is Note"-->
-            <!--                android:text="@{sell.note}"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toBottomOf="@+id/textView29" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

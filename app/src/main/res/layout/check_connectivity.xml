@@ -4,6 +4,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/Foreground"
         android:orientation="vertical">
 
         <TextView
@@ -17,6 +18,7 @@
             android:layout_marginRight="16dp"
             android:gravity="center_horizontal"
             android:text="@string/turn_on_internet_warning"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +32,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:text="@android:string/ok"
+            android:backgroundTint="@color/colorButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

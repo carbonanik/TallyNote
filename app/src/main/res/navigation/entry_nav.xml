@@ -67,5 +67,9 @@
         android:id="@+id/forgetPasswordFragment"
         android:name="com.carbondev.tallynote.view.fragments.ForgetPasswordFragment"
         android:label="ForgetPasswordFragment"
-        tools:layout="@layout/forgrt_password_fragment"/>
+        tools:layout="@layout/forgrt_password_fragment">
+        <action
+            android:id="@+id/action_forgetPasswordFragment_to_verifyNumberFragment"
+            app:destination="@id/verifyNumberFragment" />
+    </fragment>
 </navigation>

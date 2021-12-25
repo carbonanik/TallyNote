@@ -1,5 +1,6 @@
 package com.carbondev.tallynote.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -14,13 +15,10 @@ import com.carbondev.tallynote.datamodel.SELL_PRODUCT
 import com.carbondev.tallynote.datamodel.Sell
 import com.carbondev.tallynote.datamodel.typeProduct
 import com.carbondev.tallynote.utils.EdgeDecorator
-import com.carbondev.tallynote.utils.MyDateFormat
 import com.carbondev.tallynote.view.viewmodel.DetailViewModel
 
 
 class HistorySellAdapter(private val viewModel: DetailViewModel) : RecyclerView.Adapter<HistorySellAdapter.HistorySellViewHolder>() {
-
-    private val viewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistorySellViewHolder {
 
@@ -57,11 +55,12 @@ class HistorySellAdapter(private val viewModel: DetailViewModel) : RecyclerView.
 
     override fun onBindViewHolder(holder: HistorySellViewHolder, position: Int) {
 
-        if (viewModel.sellList.value!![position].type == typeProduct){
-//            viewPool.setMaxRecycledViews(0,1)
-            holder.bindSellProduct(viewModel, position, viewPool)
+        val sellForThisPosition = viewModel.sellList.value!![position]
+
+        if (sellForThisPosition.type == typeProduct){
+            holder.bindSellProduct(sellForThisPosition)
         } else {
-            holder.bindSellPayment(viewModel, position)
+            holder.bindSellPayment(sellForThisPosition)
         }
 
     }
@@ -78,57 +77,23 @@ class HistorySellAdapter(private val viewModel: DetailViewModel) : RecyclerView.
 
     class HistorySellViewHolder(private val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root){
 
-        fun bindSellProduct(
-            viewModel: DetailViewModel,
-            position: Int,
-            viewPool: RecyclerView.RecycledViewPool
-        ){
-
+        fun bindSellProduct(sell: Sell){
             viewDataBinding as HistoryItemSellBinding
-            viewDataBinding.detailViewModel = viewModel
-            viewDataBinding.sell = viewModel.sellList.value!![position]
-            viewDataBinding.beforeDueOrAdv = calculateBeforeDueOrAdv(viewModel.sellList.value!![position].beforeDue)
-            viewDataBinding.afterDueOrAdv = calculateAfterDueOrAdv(viewModel.sellList.value!![position].afterDue)
-            viewDataBinding.position = position
-            viewDataBinding.date = dateString(viewModel.sellList.value!![position])
-            viewDataBinding.historyProductListRecyclerView.layoutManager = LinearLayoutManager(viewModel.detailActivityContext)
-            viewDataBinding.historyProductListRecyclerView.adapter = HistoryProductAdapter(viewModel, position)
-            viewDataBinding.historyProductListRecyclerView.addItemDecoration(EdgeDecorator(1, EdgeDecorator.ALL))
-//            viewDataBinding.historyProductListRecyclerView.setRecycledViewPool(viewPool)
+            viewDataBinding.sell = sell
+            println("Product")
+            println(sell)
+            viewDataBinding.historyProductListRecyclerView.adapter = HistoryProductAdapter(sell)
+            viewDataBinding.historyProductListRecyclerView.addItemDecoration(EdgeDecorator(5, EdgeDecorator.ALL))
 
             viewDataBinding.executePendingBindings()
         }
 
-        fun bindSellPayment(viewModel: DetailViewModel, position: Int){
+        fun bindSellPayment(sell: Sell){
             viewDataBinding as HistoryItemSellPaymentBinding
-            viewDataBinding.detailViewModel = viewModel
-            viewDataBinding.pay = viewModel.sellList.value!![position].payment
-            viewDataBinding.due = calculateAfterDueOrAdv(viewModel.sellList.value!![position].afterDue)
-            viewDataBinding.detail = viewModel.sellList.value!![position].note
-            viewDataBinding.date = dateString(viewModel.sellList.value!![position])
+            viewDataBinding.sell = sell
+            println("Payment")
+            println(sell)
             viewDataBinding.executePendingBindings()
-        }
-
-        private fun calculateBeforeDueOrAdv(beforeTotalDue: String): String? {
-
-            return if (beforeTotalDue[0] == '-'){
-                viewDataBinding.root.context.getString(R.string.adv_before) +  beforeTotalDue.substring(1)
-            } else{
-                viewDataBinding.root.context.getString(R.string.total_due_before) + beforeTotalDue
-            }
-        }
-
-        private fun calculateAfterDueOrAdv(afterTotalDue : String): String {
-            return if (afterTotalDue[0] == '-'){
-                viewDataBinding.root.context.getString(R.string.adv_after) +  afterTotalDue.substring(1)
-            } else{
-                viewDataBinding.root.context.getString(R.string.total_due_after) + afterTotalDue
-            }
-        }
-
-        private fun dateString(sell: Sell): String {
-            val myDateFormat = MyDateFormat(sell.date)
-            return myDateFormat.sellDateString()
         }
     }
 }

@@ -13,7 +13,7 @@ class ForgrtPasswordViewModel : ViewModel() {
     private val authRepository = AuthRepository
 
     var countryCode: String? = null
-    private var phoneNumberWithCountryCode : String = ""
+    var phoneNumberWithCountryCode : String = ""
 
     val forgetNumber = MutableLiveData<String>()
     val forgetPassword = MutableLiveData<String>()
@@ -29,24 +29,21 @@ class ForgrtPasswordViewModel : ViewModel() {
     val onSendCodeButtonClick = MutableLiveData<Boolean>()
 //    val verifyResetCodeButtonClicks = MutableLiveData<Boolean>()
 
-
-//    val numberExists : LiveData<Boolean>
-//        get() = authRepository.numberExists
-
     val storedVerificationId : LiveData<String>
         get() = authRepository.storedVerificationId
 
-    val phoneResistrationSuccessful : LiveData<Boolean>
-        get() = authRepository.phoneRegistrationSuccessful
-
-    val passwordChanged : LiveData<Boolean>
-        get() = authRepository.passwordChanged
+//    val phoneResistrationSuccessful : LiveData<Boolean>
+//        get() = authRepository.phoneRegistrationSuccessful
+//
+//    val passwordChanged : LiveData<Boolean>
+//        get() = authRepository.passwordChanged
 
     fun onSendCodeButtonClick(){
         if ( !forgetPassword.value.isNullOrBlank() && forgetPassword.value!!.length >= 6 && !forgetNumber.value.isNullOrBlank()){
             processing.value = true
             phoneNumberWithCountryCode = countryCode + forgetNumber.value
             info.value = "Please Wait For Verification Code"
+            println("Please Wait For Verification Code")
             authRepository.accountExist(phoneNumberWithCountryCode)
 
         } else {

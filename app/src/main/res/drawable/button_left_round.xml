@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-    <solid android:color="@color/BackgroundDim"/>
-    <corners android:topLeftRadius="@dimen/rounded_button_corner"
-        android:bottomLeftRadius="@dimen/rounded_button_corner"/>
+<!--    <solid android:color="@color/colorButton"/>-->
+<!--    <corners android:topLeftRadius="@dimen/rounded_button_corner"-->
+<!--        android:bottomLeftRadius="@dimen/rounded_button_corner"/>-->
 
 
-</shape>
+<!--</shape>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <shape>
+        <solid android:color="@color/darkText" />
+        <corners android:topLeftRadius="@dimen/rounded_button_corner"
+            android:bottomLeftRadius="@dimen/rounded_button_corner"/>
+
+    </shape>
+</item>
+<item
+    android:bottom="2dp"
+    android:left="2dp"
+    android:right="0dp"
+    android:top="2dp">
+    <shape>
+        <solid android:color="@color/Foreground" />
+        <corners android:topLeftRadius="14dp"
+            android:bottomLeftRadius="14dp"/>
+
+    </shape>
+</item>
+</layer-list>

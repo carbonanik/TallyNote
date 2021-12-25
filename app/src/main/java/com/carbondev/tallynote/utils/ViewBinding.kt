@@ -1,7 +1,6 @@
 package com.carbondev.tallynote.utils
 
 import android.content.Context
-import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.carbondev.tallynote.R
@@ -9,18 +8,64 @@ import com.carbondev.tallynote.R
 
 @BindingAdapter("dueOrAdv")
 fun setDueOrAdv(textView: TextView, amount: String?) {
-    val prefix: String
-    if (amount != null) {
-        if (amount[0] == '-') {
-            prefix = textView.context.getString(R.string.adv_clone)
-            textView.text = (prefix + numEnOrBn(amount.substring(1), textView.context))
-        } else {
-            prefix = textView.context.getString(R.string.due_clone)
-            textView.text = (prefix + numEnOrBn(amount, textView.context))
-        }
-    }
+//    if (amount == null) return
+    textView.text = findDueOrAdv(
+        amount,
+        R.string.due_clone,
+        R.string.adv_clone,
+        textView.context
+    )
 }
 
+@BindingAdapter("beforeDueOrAdv")
+fun setBeforeDueOrAdv(textView: TextView, beforeTotalDue: String?) {
+//    if (beforeTotalDue == null) return
+    textView.text = findDueOrAdv(
+        beforeTotalDue,
+        R.string.total_due_before,
+        R.string.adv_before,
+        textView.context
+    )
+}
+
+@BindingAdapter("afterDueOrAdv")
+fun setAfterDueOrAdv(textView: TextView, afterTotalDue : String?) {
+//    if (afterTotalDue == null) return
+    textView.text = findDueOrAdv(
+        afterTotalDue,
+        R.string.total_due_after,
+        R.string.adv_after,
+        textView.context
+    )
+}
+
+@BindingAdapter("dateString")
+fun setDateString(textView: TextView, date: String?){
+    if (date == null) return
+    val myDateFormat = MyDateFormat(date)
+    textView.text = myDateFormat.sellDateString(textView.context)
+}
+
+
+@BindingAdapter("numberEnOrBn")
+fun setNumberEnOrBn(textView: TextView, number: String?){
+    if (number == null) return
+    textView.text = numEnOrBn(number, textView.context)
+}
+
+@BindingAdapter("shortTitle")
+fun setShortTitle(textView: TextView, title: String?) {
+    if (title == null) return
+
+    val trim = title.trim()
+    textView.text = if (trim.length >= 24) {
+
+//        val ellipsis = "\u2026"
+        "${trim.take(22).replace("\n", " ")}…"
+    } else {
+        trim
+    }
+}
 
 fun numEnOrBn(num: String, context: Context): String {
     return if (context.resources.configuration.locale.language == "bn") {
@@ -32,3 +77,13 @@ fun numEnOrBn(num: String, context: Context): String {
     } else
         num
 }
+
+fun findDueOrAdv(amount: String?, duePrefix: Int, advPrefix: Int, context: Context): String {
+    if (amount == null) return ""
+    return if (amount[0] == '-') {
+        context.getString(advPrefix) + numEnOrBn(amount.substring(1), context)
+    } else {
+        context.getString(duePrefix) + numEnOrBn(amount, context)
+    }
+}
+

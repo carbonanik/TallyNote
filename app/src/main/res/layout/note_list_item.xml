@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="title"
-            type="String" />
-        <variable
-            name="date"
-            type="String" />
+            name="note"
+            type="com.carbondev.tallynote.datamodel.Note" />
+<!--        <variable-->
+<!--            name="title"-->
+<!--            type="String" />-->
+<!--        <variable-->
+<!--            name="date"-->
+<!--            type="String" />-->
         <variable
             name="noteListViewModel"
             type="com.carbondev.tallynote.view.viewmodel.NoteListViewModel" />
-        <variable
-            name="noteKey"
-            type="String" />
+<!--        <variable-->
+<!--            name="noteKey"-->
+<!--            type="String" />-->
     </data>
 
     <LinearLayout
@@ -23,7 +27,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginRight="5dp"
         android:background="@color/Foreground"
-        android:onClick="@{() -> noteListViewModel.onNoteItemClick(noteKey)}"
+        android:onClick="@{() -> noteListViewModel.onNoteItemClick(note.key)}"
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
@@ -34,9 +38,9 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{title}"
-            android:textColor="@color/colorGray"
-            android:textSize="20sp"
+            app:shortTitle="@{note.content}"
+            android:textColor="@color/darkText"
+            android:textSize="24sp"
             tools:text="This Is Note" />
 
         <TextView
@@ -44,9 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@{date}"
-            android:textColor="@color/colorGray"
-            android:textSize="12sp"
+            android:text="@{note.createdAt}"
+            android:textColor="@color/darkText"
+            android:textSize="14sp"
             tools:text="Date" />
     </LinearLayout>
 </layout>

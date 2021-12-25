@@ -1,5 +1,7 @@
 package com.carbondev.tallynote.utils
 
+import android.content.Context
+import com.carbondev.tallynote.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,8 +57,8 @@ class MyDateFormat(private var timeStamp: String) {
         return calendar.timeInMillis
     }
 
-    fun sellDateString(): String {
-        return "List: " +
+    fun sellDateString(context: Context): String {
+        return context.getString(R.string.list_semicolon) +
                 getDayOfWeekName() +
                 ", " +
                 getDayOfMonth() +

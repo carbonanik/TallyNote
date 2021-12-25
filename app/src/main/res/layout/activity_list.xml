@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Foreground"
+        android:background="@color/Background"
         tools:context=".view.activity.ListActivity">
 
         <SearchView
@@ -46,41 +46,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customer_list_searchView"
-            app:setAdapter="@{listViewModel.adapter}" />
+            app:setAdapter="@{listViewModel.adapter}"
+            tools:listitem="@layout/customer_item_layout" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_blue_button"
             android:onClick="@{() -> listViewModel.onAddCustomerButtonClick()}"
-            android:src="@drawable/ic_add_w"
-            app:tint="@color/Foreground"
-            app:backgroundTint="@color/FloatingIcon"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/add_person"
+            android:textColor="@color/Foreground"
+            app:backgroundTint="@color/colorButton"
+            app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/rounded_blue_button"
             android:onClick="@{() -> listViewModel.onNoteClick()}"
-            android:src="@drawable/ic_note_white"
-            app:tint="@color/Foreground"
-            app:backgroundTint="@color/FloatingIcon"
-            app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton"
-            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
-            app:layout_constraintTop_toTopOf="@+id/floatingActionButton" />
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/go_notes"
+            app:backgroundTint="@color/colorButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/BackgroundDim"
+            android:background="@color/Foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -93,7 +98,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:text="@{listViewModel.ownerName}"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
 
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +114,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"

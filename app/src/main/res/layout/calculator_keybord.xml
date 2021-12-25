@@ -1,10 +1,10 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@color/Background"
         android:baselineAligned="false">
 
         <LinearLayout
@@ -22,6 +22,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="AC" />
 
             <Button
@@ -29,6 +31,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="7" />
 
             <Button
@@ -36,6 +40,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="4" />
 
             <Button
@@ -43,6 +49,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="1" />
 
             <Button
@@ -50,6 +58,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="Back" />
         </LinearLayout>
 
@@ -66,6 +76,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="%" />
 
             <Button
@@ -73,6 +85,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="8" />
 
             <Button
@@ -80,6 +94,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="5" />
 
             <Button
@@ -87,6 +103,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="2" />
 
             <Button
@@ -94,6 +112,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="0" />
         </LinearLayout>
 
@@ -110,6 +130,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="/" />
 
             <Button
@@ -117,6 +139,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="9" />
 
             <Button
@@ -124,6 +148,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="6" />
 
             <Button
@@ -131,6 +157,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="3" />
 
             <Button
@@ -138,6 +166,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="." />
         </LinearLayout>
 
@@ -156,6 +186,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="*" />
 
             <Button
@@ -163,6 +195,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="-" />
 
             <Button
@@ -172,6 +206,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="33dp"
                 android:paddingBottom="32dp"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="+" />
 
             <Button
@@ -179,6 +215,8 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/darkText"
+                android:backgroundTint="@color/Foreground"
                 android:text="=" />
 
 <!--            <Button-->

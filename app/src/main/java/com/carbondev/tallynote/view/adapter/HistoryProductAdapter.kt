@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.carbondev.tallynote.R
 import com.carbondev.tallynote.databinding.HistoryItemProductBinding
 import com.carbondev.tallynote.datamodel.Product
+import com.carbondev.tallynote.datamodel.Sell
 import com.carbondev.tallynote.view.viewmodel.DetailViewModel
 
-class HistoryProductAdapter(private val viewModel: DetailViewModel, private val sellPosition: Int) : RecyclerView.Adapter<HistoryProductAdapter.HistoryProductViewHolder>() {
+class HistoryProductAdapter(private val sell: Sell) : RecyclerView.Adapter<HistoryProductAdapter.HistoryProductViewHolder>() {
 
-//    private var productList : MutableList<Product> = arrayListOf()
-//    private var sellKey = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryProductViewHolder {
         val historyItemSellBinding = DataBindingUtil.inflate<HistoryItemProductBinding>(
@@ -28,18 +27,12 @@ class HistoryProductAdapter(private val viewModel: DetailViewModel, private val 
     }
 
     override fun getItemCount(): Int {
-        return viewModel.sellList.value!![sellPosition].products.size
+        return sell.products.size
     }
 
     override fun onBindViewHolder(holder: HistoryProductViewHolder, position: Int) {
-        holder.bind(viewModel.sellList.value!![sellPosition].products[position], position)
+        holder.bind(sell.products[position], position)
     }
-
-
-//    fun setProductList(sell : Sell){
-//        productList = sell.products
-//    }
-
 
     class HistoryProductViewHolder(v: HistoryItemProductBinding) : RecyclerView.ViewHolder(v.root) {
         private val historyItemProductBinding = v

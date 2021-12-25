@@ -31,13 +31,13 @@ class CustomerDetailPagerAdapter(private val viewModel: DetailViewModel) : Pager
         if (position == 0){
             view = layoutInflater.inflate(R.layout.customer_history_layout, container, false)
 
-            val linearLayoutManager = LinearLayoutManager(viewModel.detailActivityContext)
+            val linearLayoutManager = LinearLayoutManager(container.context)
             linearLayoutManager.reverseLayout = true
             linearLayoutManager.stackFromEnd = true
 
             CustomerHistoryLayoutBinding.bind(view).apply {
 
-                this.lifecycleOwner = viewModel.detailActivityContext as LifecycleOwner
+                this.lifecycleOwner = container.context as LifecycleOwner
                 this.detailViewModel = viewModel
                 this.recyclerViewHistory.layoutManager = linearLayoutManager
                 this.recyclerViewHistory.addItemDecoration(EdgeDecorator(200))
@@ -51,13 +51,12 @@ class CustomerDetailPagerAdapter(private val viewModel: DetailViewModel) : Pager
             view = layoutInflater.inflate(R.layout.customer_about_layout, container, false)
 
             CustomerAboutLayoutBinding.bind(view).apply {
-                this.lifecycleOwner = viewModel.detailActivityContext as LifecycleOwner
+                this.lifecycleOwner = container.context as LifecycleOwner
                 this.detailViewModel = viewModel
                 this.executePendingBindings()
             }
 
         }
-
 
         container.addView(view)
         return view

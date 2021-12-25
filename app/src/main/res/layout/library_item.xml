@@ -27,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:textSize="22sp"
-            tools:text="@{library.detail}" />
+            android:textColor="@color/darkText"
+            android:text="@{library.detail}"
+            tools:text="Library"/>
     </LinearLayout>
 </layout>

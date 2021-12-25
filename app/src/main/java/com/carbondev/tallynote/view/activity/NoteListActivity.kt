@@ -3,20 +3,18 @@ package com.carbondev.tallynote.view.activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Canvas
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.carbondev.tallynote.R
 import com.carbondev.tallynote.databinding.ActivityNoteListBinding
-import com.carbondev.tallynote.datamodel.INTENT_NOTE
 import com.carbondev.tallynote.databinding.NoteDeleteDialogBinding
-//import com.carbondev.tallynote.databinding.NoteDeleteDialogBinding
+import com.carbondev.tallynote.datamodel.INTENT_NOTE
 import com.carbondev.tallynote.view.viewmodel.NoteListViewModel
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
@@ -30,7 +28,7 @@ class NoteListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_list)
 
-        setBinding(savedInstanceState)
+        setBinding()
         observers()
     }
 
@@ -39,7 +37,7 @@ class NoteListActivity : AppCompatActivity() {
         super.onRestart()
     }
 
-    private fun setBinding(savedInstanceState: Bundle?) {
+    private fun setBinding() {
         val linearLayoutManager = LinearLayoutManager(this)
 
         linearLayoutManager.reverseLayout = true
@@ -55,9 +53,7 @@ class NoteListActivity : AppCompatActivity() {
             this.noteListViewModel = viewModel
             this.noteListRecyclerView.layoutManager = linearLayoutManager
         }
-//        if (savedInstanceState == null){
         viewModel.init()
-//        }
 
         val itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(binding.noteListRecyclerView)
@@ -66,25 +62,25 @@ class NoteListActivity : AppCompatActivity() {
     }
 
     private fun observers(){
-        viewModel.noteAddButtonClick.observe( this , Observer {
+        viewModel.noteAddButtonClick.observe( this , {
             val intent = Intent(this, NoteActivity::class.java)
             this.startActivity(intent)
         })
 
-        viewModel.noteItemClick.observe( this , Observer { noteKey->
+        viewModel.noteItemClick.observe( this , { noteKey->
             val intent = Intent(this, NoteActivity::class.java)
             intent.putExtra(INTENT_NOTE, noteKey )
             this.startActivity(intent)
         })
 
-        viewModel.liveNoteList.observe( this, Observer {
+        viewModel.liveNoteList.observe( this, {
             viewModel.refreshNoteList()
             goTop()
         })
 
     }
 
-    fun goTop(){
+    private fun goTop(){
         binding.noteListRecyclerView.smoothScrollToPosition(viewModel.liveNoteList.value!!.size)
     }
 
@@ -128,7 +124,7 @@ class NoteListActivity : AppCompatActivity() {
                                  actionState: Int, isCurrentlyActive: Boolean) {
             RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
-                .addSwipeRightBackgroundColor(ContextCompat.getColor(this@NoteListActivity, R.color.colorGray))
+                .addSwipeRightBackgroundColor(ContextCompat.getColor(this@NoteListActivity, R.color.darkText))
                 .addSwipeRightActionIcon(R.drawable.ic_delete_black_24dp)
                 .create()
                 .decorate()

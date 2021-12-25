@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
             type="com.carbondev.tallynote.view.viewmodel.ResistryViewModel" />
     </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.fragments.ResistryFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/BackgroundDim">
+            android:background="@color/Foreground"
+            tools:context=".view.fragments.ResistryFragment">
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginRight="50dp"
+                android:layout_marginBottom="30dp"
                 android:adjustViewBounds="true"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/talli_khata_logo" />
+                app:srcCompat="@drawable/tally_note" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                app:layout_constraintVertical_bias="0.07999998">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <Button
                     android:id="@+id/login_by_pass_button"
@@ -50,13 +49,13 @@
                     android:layout_marginLeft="60dp"
                     android:layout_marginEnd="60dp"
                     android:layout_marginRight="60dp"
+                    android:onClick="@{() -> viewModel.startNavigateToLoginFragment()}"
                     android:padding="10dp"
                     android:text="@string/log_in"
-                    android:onClick="@{() -> viewModel.startNavigateToLoginFragment()}"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    app:backgroundTint="@color/Foreground"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,13 +70,13 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="60dp"
                     android:layout_marginRight="60dp"
+                    android:onClick="@{() -> viewModel.startNavigateToSignUpFragment()}"
                     android:padding="10dp"
                     android:text="@string/create_account"
-                    android:onClick="@{() -> viewModel.startNavigateToSignUpFragment()}"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    app:backgroundTint="@color/Foreground"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/colorButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/login_by_pass_button" />
@@ -87,10 +86,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/forget_password"
-                    android:onClick="@{() -> viewModel.startNavigateToForgetPasswordFragment()}"
-                    android:textColor="@color/Foreground"
                     android:background="?android:attr/selectableItemBackground"
+                    android:onClick="@{() -> viewModel.startNavigateToForgetPasswordFragment()}"
+                    android:text="@string/forget_password"
+                    android:textColor="@color/darkText"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/create_account_button"
                     app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
@@ -107,16 +106,13 @@
                 android:layout_marginRight="50dp"
                 android:gravity="center"
                 android:text="@string/privacy_policy_agree"
-                android:textColor="@color/Foreground"
+                android:textColor="@color/darkText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-                app:layout_constraintVertical_bias="0.60" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-    </FrameLayout>
 </layout>

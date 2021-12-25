@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/BackgroundDim"
+        android:background="@color/Background"
         tools:context=".view.activity.DetailActivity">
 
 
@@ -36,7 +36,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="@{detailViewModel.currentCustomer.name}"
-            android:textColor="@color/Foreground"
+            android:textColor="@color/darkText"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent"
@@ -61,10 +61,11 @@
             android:id="@+id/tab_history"
             android:layout_width="0dp"
             android:layout_height="30dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/history"
-            android:textColor="@color/Foreground"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/view3"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,10 +75,11 @@
             android:id="@+id/tab_about"
             android:layout_width="0dp"
             android:layout_height="30dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/about"
-            android:textColor="@color/Foreground"
+            android:textColor="@color/darkText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view3"

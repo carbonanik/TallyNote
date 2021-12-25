@@ -82,10 +82,13 @@
     <string name="search">Tap To Search</string>
     <string name="ok">OK</string>
     <string name="en">English</string>
-    <string name="bn">Bengali</string>
+    <string name="bn">বাংলা</string>
     <string name="selected_language">English</string>
     <string name="language">Language</string>
     <string name="edit_name">Edit Name</string>
     <string name="change_language">Change Language</string>
+    <string name="add_person">ADD PERSON</string>
+    <string name="go_notes">Notes</string>
+    <string name="list_semicolon">\"List: \"</string>
 
 </resources>

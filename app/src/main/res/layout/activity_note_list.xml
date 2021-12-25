@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/BackgroundDim"
+        android:background="@color/Background"
         tools:context=".view.activity.NoteListActivity">
 
         <ImageView
@@ -33,10 +33,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="@string/notes"
-            android:textColor="@color/Foreground"
-            android:textSize="36sp"
+            android:textColor="@color/darkText"
+            android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/backButton"
             app:layout_constraintTop_toTopOf="parent" />
 

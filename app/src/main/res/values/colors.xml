@@ -6,14 +6,14 @@
     <color name="colorAccent">#3C3F41</color>
 
 
-    <color name="Background">#0054AC</color>
-    <color name="BackgroundDim">#007FFF</color>
-    <color name="Foreground">#E4E8EE</color>
+    <color name="Foreground">#FBFBFB</color>
+    <color name="Background">#ECECEC</color>
+    <color name="colorButton">#007FFF</color>
     <color name="FloatingIcon">#14293F</color>
+    <color name="darkText">#2E2E2E</color>
+    <color name="hintText">#5E5E5E</color>
 
 
     <color name="colorUnique">#EC2553</color>
-    <color name="colorGray">#5E5E5E</color>
-
 
 </resources>
