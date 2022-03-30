@@ -23,8 +23,8 @@ class VerifyNumberViewModel : ViewModel() {
     val codeNotMatch : LiveData<Boolean>
         get() = authRepository.codeNotMatch
 
-    val verificationFaild : LiveData<Boolean>
-        get() = authRepository.verificationFaild
+    val verificationFailed : LiveData<Boolean>
+        get() = authRepository.verificationFailed
 
     val linkEmailPasswordSuccessful : LiveData<Boolean>
         get() = authRepository.linkEmailPasswordSuccessful

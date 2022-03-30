@@ -36,9 +36,9 @@ object AuthRepository {
     val codeNotMatch : LiveData<Boolean>
         get() = mCodeNotMatch
 
-    private val mVerificationFaild = MutableLiveData<Boolean>()
-    val verificationFaild : LiveData<Boolean>
-        get() = mVerificationFaild
+    private val mVerificationFailed = MutableLiveData<Boolean>()
+    val verificationFailed : LiveData<Boolean>
+        get() = mVerificationFailed
 
     private val mLinkEmailPasswordSuccessful = MutableLiveData<Boolean>()
     val linkEmailPasswordSuccessful : LiveData<Boolean>
@@ -60,6 +60,10 @@ object AuthRepository {
     val retrieveSmsCode : LiveData<String>
         get() = mRetrieveSmsCode
 
+    private val mNumberVerification = MutableLiveData<NumberVerification>()
+    val numberVerification: LiveData<NumberVerification>
+        get() = mNumberVerification
+
 
 //    fun numberExists(fullPhoneNumber : String) {
 //
@@ -74,6 +78,9 @@ object AuthRepository {
 //        })
 //    }
 
+    /**
+     * Sign in with Fake emile(Generated from phone number) password
+     */
     fun signInWithEmailPassword(email: String, password: String){
 
         auth.signInWithEmailAndPassword(email, password)
@@ -85,8 +92,8 @@ object AuthRepository {
             }
     }
 
-    fun getUid(): String {
-        return auth.currentUser!!.uid
+    fun getUid(): String? {
+        return auth.currentUser?.uid
     }
 
     fun verifyNumber(phoneNumberWithCountryCode: String, activity: Activity){
@@ -118,7 +125,7 @@ object AuthRepository {
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            mVerificationFaild.value = true
+            mVerificationFailed.value = true
         }
 
         override fun onCodeSent(
@@ -144,7 +151,6 @@ object AuthRepository {
                     // invalid credential // verification code dose not match
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         mCodeNotMatch.value = true
-
                     }
                 }
             }
@@ -161,7 +167,7 @@ object AuthRepository {
 
                     loginWithEmailCredential(emailCredential)
                 } else {
-                    mVerificationFaild.value = true
+                    mVerificationFailed.value = true
 //                    println("linkEmailPasswordLogin")
                 }
             }
@@ -174,7 +180,7 @@ object AuthRepository {
 
             }
             .addOnFailureListener {
-                mVerificationFaild.value = true
+                mVerificationFailed.value = true
 //                println("loginWithEmailCredential")
             }
     }
@@ -209,7 +215,7 @@ object AuthRepository {
         mStoredVerificationId.value = null
         mPhoneRegistrationSuccessful.value = null
         mCodeNotMatch.value = null
-        mVerificationFaild.value = null
+        mVerificationFailed.value = null
         mLinkEmailPasswordSuccessful.value = null
         mPasswordChanged.value = null
         mLoggedIn.value = null

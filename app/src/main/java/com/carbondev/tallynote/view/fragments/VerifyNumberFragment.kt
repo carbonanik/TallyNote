@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import com.carbondev.tallynote.databinding.VerifyNumberFragmentBinding
 import com.carbondev.tallynote.view.activity.ListActivity
 import com.carbondev.tallynote.view.viewmodel.VerifyNumberViewModel
-import com.google.firebase.auth.FirebaseAuth
 
 class VerifyNumberFragment : Fragment() {
 
@@ -61,9 +60,9 @@ class VerifyNumberFragment : Fragment() {
 //            }
 //        })
 
-        viewModel.phoneRegistrationSuccessful.observe(viewLifecycleOwner, {
-            if (it == true){
-                if (viewModel.verifyForSignUp){
+        viewModel.phoneRegistrationSuccessful.observe(viewLifecycleOwner) {
+            if (it == true) {
+                if (viewModel.verifyForSignUp) {
                     viewModel.info.value = "Registration Successful"
                     viewModel.linkEmailPasswordLogin(phone, pass, requireActivity())
                 } else {
@@ -71,7 +70,7 @@ class VerifyNumberFragment : Fragment() {
                     viewModel.changeEmailPassword(pass)
                 }
             }
-        })
+        }
 
 //        viewModel.receivedCode.observe(viewLifecycleOwner, {
 //            if (!it.isNullOrEmpty()){
@@ -79,45 +78,45 @@ class VerifyNumberFragment : Fragment() {
 //            }
 //        })
 
-        viewModel.codeNotMatch.observe(viewLifecycleOwner, {
-            if (it == true){
+        viewModel.codeNotMatch.observe(viewLifecycleOwner) {
+            if (it == true) {
                 println("Verification Code Dose Not Match")
                 viewModel.info.value = "Verification Code Dose Not Match"
                 viewModel.processing.value = false
             }
-        })
+        }
 
-        viewModel.verificationFaild.observe(viewLifecycleOwner, {
-            if (it == true){
+        viewModel.verificationFailed.observe(viewLifecycleOwner) {
+            if (it == true) {
                 viewModel.info.value = "Verification Failed"
                 viewModel.processing.value = false
             }
-        })
+        }
 
-        viewModel.linkEmailPasswordSuccessful.observe(viewLifecycleOwner, {
-            if (it == true){
+        viewModel.linkEmailPasswordSuccessful.observe(viewLifecycleOwner) {
+            if (it == true) {
                 viewModel.allSuccess(name)
                 openListActivity()
             }
-        })
+        }
 
-        viewModel.passwordChanged.observe(viewLifecycleOwner, {
+        viewModel.passwordChanged.observe(viewLifecycleOwner) {
             if (it == true) {
                 viewModel.info.value = "Password Changed Successfully"
                 println("Password Changed Successfully")
                 openListActivity()
             }
-        })
+        }
 
         viewBinding.numberVerifyButton.setOnClickListener {
             viewModel.signInWithPhone(viewModel.receivedCode.value, requireActivity())
         }
 
-        viewModel.info.observe(viewLifecycleOwner, {
-            if (!it.isNullOrEmpty()){
+        viewModel.info.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             }
-        })
+        }
     }
 
     private fun openListActivity(){

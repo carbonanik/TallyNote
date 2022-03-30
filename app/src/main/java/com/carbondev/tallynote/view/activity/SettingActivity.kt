@@ -115,9 +115,9 @@ class SettingActivity : AppCompatActivity() {
         binding.shareApp.setOnClickListener {
             openPlayStore()
         }
-        binding.raw.setOnClickListener {
-            openRaw()
-        }
+//        binding.raw.setOnClickListener {
+//            openRaw()
+//        }
     }
 
     private fun changeLanguage() {
@@ -185,9 +185,9 @@ class SettingActivity : AppCompatActivity() {
 //        }
     }
 
-    data class Customers(
-        val customer: List<Customer>
-    )
+//    data class Customers(
+//        val customer: List<Customer>
+//    )
 
 }
 

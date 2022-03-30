@@ -44,8 +44,8 @@ class SignupFragment : Fragment() {
 
     private lateinit var watchList: List<EditText>
     private fun setObservers(){
-        viewModel.storedVerificationId.observe(viewLifecycleOwner, {
-            if (!it.isNullOrEmpty()){
+        viewModel.storedVerificationId.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
                 viewModel.processingSignUp.value = false
 
                 val action = SignupFragmentDirections.actionSignupFragmentToVerifyNumberFragment(
@@ -55,7 +55,7 @@ class SignupFragment : Fragment() {
                 )
                 navController.navigate(action)
             }
-        })
+        }
 
 //        viewModel.numberExists.observe(viewLifecycleOwner, {
 //            if (it){
@@ -69,8 +69,8 @@ class SignupFragment : Fragment() {
 //            }
 //        })
 
-        viewModel.accountExist.observe(viewLifecycleOwner, {
-            if (it == true){
+        viewModel.accountExist.observe(viewLifecycleOwner) {
+            if (it == true) {
                 val text = "This Number Already Exist"
                 println(text)
                 viewModel.info.value = text
@@ -81,24 +81,24 @@ class SignupFragment : Fragment() {
 //                viewModel.info.value = text
                 viewModel.verifyNumber(requireActivity())
             }
-        })
+        }
 
-        viewModel.info.observe(viewLifecycleOwner, {
-            if (!it.isNullOrEmpty()){
+        viewModel.info.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
-        viewModel.processingSignUp.observe( viewLifecycleOwner, {
-            if (it){
+        viewModel.processingSignUp.observe( viewLifecycleOwner) {
+            if (it) {
                 viewBinding.loading.visibility = View.VISIBLE
             } else {
                 viewBinding.loading.visibility = View.GONE
             }
-        })
+        }
 
-        viewModel.onViewPasswordClick.observe(viewLifecycleOwner, {
-            if (it){
+        viewModel.onViewPasswordClick.observe(viewLifecycleOwner) {
+            if (it) {
                 viewBinding.signUpPassword.apply {
                     transformationMethod = null
                     setSelection(text.length)
@@ -122,7 +122,7 @@ class SignupFragment : Fragment() {
                 viewBinding.singUpPasswordVisibilityToggle.setImageResource(R.drawable.ic_visibility)
 
             }
-        })
+        }
 
         viewBinding.apply {
             watchList = listOf(signUpName, signUpPhone, signUpPassword, confirmSignUpPassword)

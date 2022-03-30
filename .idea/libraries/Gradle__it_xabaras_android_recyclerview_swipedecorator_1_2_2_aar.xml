@@ -26,6 +26,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c9285e5a10ceb3efff372136fddd07c/jetified-recyclerview-swipedecorator-1.2.2/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c9285e5a10ceb3efff372136fddd07c/jetified-recyclerview-swipedecorator-1.2.2/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3c9285e5a10ceb3efff372136fddd07c/jetified-recyclerview-swipedecorator-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ce9c049156e9cae3a00a3dbafdcfcd66/transformed/jetified-recyclerview-swipedecorator-1.2.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ce9c049156e9cae3a00a3dbafdcfcd66/transformed/jetified-recyclerview-swipedecorator-1.2.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ce9c049156e9cae3a00a3dbafdcfcd66/transformed/jetified-recyclerview-swipedecorator-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4b341bd2b75ab7ba8cb2228c881fae5a/transformed/jetified-recyclerview-swipedecorator-1.2.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4b341bd2b75ab7ba8cb2228c881fae5a/transformed/jetified-recyclerview-swipedecorator-1.2.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4b341bd2b75ab7ba8cb2228c881fae5a/transformed/jetified-recyclerview-swipedecorator-1.2.2/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.xabaras.android/recyclerview-swipedecorator/1.2.2/10befc11c7b0f96a82ea1f23d8888f44d0e4ec8f/recyclerview-swipedecorator-1.2.2-javadoc.jar!/" />
