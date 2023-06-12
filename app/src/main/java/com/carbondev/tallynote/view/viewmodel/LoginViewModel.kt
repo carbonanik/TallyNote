@@ -11,8 +11,8 @@ class LoginViewModel : ViewModel() {
 
     private val authRepository = AuthRepository
 
-    val loginNumber = MutableLiveData<String>().apply { value = "" }
-    val loginPassword = MutableLiveData<String>().apply { value = "" }
+    val loginNumber = MutableLiveData("")
+    val loginPassword = MutableLiveData("")
 
     val info = MutableLiveData<String>()
 //    val authInfo : LiveData<String>

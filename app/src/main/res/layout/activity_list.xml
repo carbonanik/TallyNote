@@ -35,7 +35,8 @@
             android:src="@drawable/ic_settings_black_24dp"
             app:layout_constraintBottom_toBottomOf="@+id/customer_list_searchView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/customer_list_searchView" />
+            app:layout_constraintTop_toTopOf="@+id/customer_list_searchView"
+            android:contentDescription="Setting" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/customer_recyclerVew"
@@ -55,13 +56,13 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rounded_blue_button"
+            android:background="@drawable/rounded_black_shape"
             android:onClick="@{() -> listViewModel.onAddCustomerButtonClick()}"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
             android:text="@string/add_person"
             android:textColor="@color/Foreground"
-            app:backgroundTint="@color/colorButton"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toTopOf="@+id/button4"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -72,12 +73,12 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/rounded_blue_button"
+            android:background="@drawable/rounded_black_shape"
             android:onClick="@{() -> listViewModel.onNoteClick()}"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
             android:text="@string/go_notes"
-            app:backgroundTint="@color/colorButton"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

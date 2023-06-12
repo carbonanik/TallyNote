@@ -12,6 +12,7 @@
     <color name="FloatingIcon">#14293F</color>
     <color name="darkText">#2E2E2E</color>
     <color name="hintText">#5E5E5E</color>
+    <color name="blackButton">#000000</color>
 
 
     <color name="colorUnique">#EC2553</color>

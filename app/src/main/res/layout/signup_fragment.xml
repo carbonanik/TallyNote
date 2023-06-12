@@ -13,8 +13,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragments.SignupFragment"
-        android:background="@color/Foreground">
+        android:background="@color/Foreground"
+        tools:context=".view.fragments.SignupFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -107,7 +107,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="14dp"
-
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/rounded_button"
                 android:hint="@string/password"
@@ -133,8 +132,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/ic_visibility"
                 android:onClick="@{() -> viewModel.onViewPasswordClick()}"
+                android:src="@drawable/ic_visibility"
                 app:layout_constraintBottom_toBottomOf="@+id/sign_up_password"
                 app:layout_constraintEnd_toEndOf="@+id/sign_up_password"
                 app:layout_constraintTop_toTopOf="@+id/sign_up_password"

@@ -17,7 +17,7 @@ import com.carbondev.tallynote.view.adapter.HistorySellAdapter
 import java.util.*
 import kotlin.math.abs
 
-class DetailViewModel() : ViewModel() {
+class DetailViewModel : ViewModel() {
 
     var context: Context? = null
     private val remoteDataRepo = FirebaseDataRepository
@@ -64,7 +64,7 @@ class DetailViewModel() : ViewModel() {
     }
 
     fun notifySellAdapter(){
-        historySellAdapter!!.notifyDataSetChanged()
+        historySellAdapter?.notifyDataSetChanged()
     }
 
 

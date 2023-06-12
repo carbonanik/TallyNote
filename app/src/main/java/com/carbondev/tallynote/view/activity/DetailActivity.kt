@@ -102,7 +102,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        viewModel.onEditCustomerClick.observe(this, {
+        viewModel.onEditCustomerClick.observe(this) {
 
             val editCustomerDialog = AlertDialog.Builder(this).create()
             val view = layoutInflater.inflate(R.layout.add_customer, null)
@@ -110,16 +110,16 @@ class DetailActivity : AppCompatActivity() {
 
             binding.customer = viewModel.currentCustomer.value
             binding.typeNote.text = getString(R.string.edit_customer)
-            if (viewModel.currentCustomer.value!!.gender == Gender().male){
+            if (viewModel.currentCustomer.value?.gender == Gender().male) {
                 binding.radioBMale.isChecked = true
-            } else if (viewModel.currentCustomer.value!!.gender == Gender().female) {
+            } else if (viewModel.currentCustomer.value?.gender == Gender().female) {
                 binding.radioBFemale.isChecked = true
             }
 
             editCustomerDialog.setView(view)
-            binding.addButton.setOnClickListener{
+            binding.addButton.setOnClickListener {
                 val customer = binding.customer
-                if (customer!!.name.isNotEmpty()){
+                if (customer!!.name.isNotEmpty()) {
                     viewModel.submitUpdatedCustomer(customer)
                 }
                 editCustomerDialog.dismiss()
@@ -129,15 +129,15 @@ class DetailActivity : AppCompatActivity() {
                 editCustomerDialog.dismiss()
             }
             editCustomerDialog.show()
-        })
+        }
 
-        viewModel.onCartClick.observe( this, {
-            val intent = Intent( this, SellCartActivity::class.java)
-            intent.putExtra(INTENT_SELL_CURT, viewModel.currentCustomer.value!!.key)
+        viewModel.onCartClick.observe( this) {
+            val intent = Intent(this, SellCartActivity::class.java)
+            intent.putExtra(INTENT_SELL_CURT, viewModel.currentCustomer.value?.key)
             startActivity(intent)
-        })
+        }
 
-        viewModel.payDueButtonClick.observe( this, {
+        viewModel.payDueButtonClick.observe( this) {
 
             val payDialog = AlertDialog.Builder(this).create()
             val view = layoutInflater.inflate(R.layout.pay_customer_dialog, null)
@@ -150,8 +150,8 @@ class DetailActivity : AppCompatActivity() {
 
                 val note = payCustomerDialogBinding.note
 
-                if (!payAmount.isNullOrEmpty()){
-                    if (note.isNullOrEmpty()){
+                if (!payAmount.isNullOrEmpty()) {
+                    if (note.isNullOrEmpty()) {
                         viewModel.payDue(payAmount, "")
                     } else {
                         viewModel.payDue(payAmount, note)
@@ -163,22 +163,22 @@ class DetailActivity : AppCompatActivity() {
                 payDialog.dismiss()
             }
             payDialog.show()
-        })
+        }
 
-        viewModel.currentCustomer.observe(this, {
+        viewModel.currentCustomer.observe(this) {
             viewModel.calculateDueOrAdv()
-        })
+        }
 
-        viewModel.sellList.observe(this, {
+        viewModel.sellList.observe(this) {
             viewModel.notifySellAdapter()
             viewModel.scrollToTop()
-        })
+        }
 
-        viewModel.onDatePickerClick.observe(this, {
+        viewModel.onDatePickerClick.observe(this) {
             handleDateButtonClick()
-        })
+        }
 
-        viewModel.onDeleteCustomerClick.observe(this, {
+        viewModel.onDeleteCustomerClick.observe(this) {
             MaterialDialog(this).show {
                 title(text = "Delete Customer?")
                 message(text = "All Data Of this Customer will be deleted")
@@ -190,7 +190,7 @@ class DetailActivity : AppCompatActivity() {
                 lifecycleOwner(this@DetailActivity)
 
             }
-        })
+        }
     }
 
     private fun handleDateButtonClick(){

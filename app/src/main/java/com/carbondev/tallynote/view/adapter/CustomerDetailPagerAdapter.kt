@@ -11,6 +11,8 @@ import androidx.viewpager.widget.PagerAdapter
 import com.carbondev.tallynote.R
 import com.carbondev.tallynote.databinding.CustomerAboutLayoutBinding
 import com.carbondev.tallynote.databinding.CustomerHistoryLayoutBinding
+import com.carbondev.tallynote.datamodel.ABOUT_TAB
+import com.carbondev.tallynote.datamodel.HISTORY_TAB
 import com.carbondev.tallynote.utils.EdgeDecorator
 import com.carbondev.tallynote.view.viewmodel.DetailViewModel
 
@@ -28,7 +30,7 @@ class CustomerDetailPagerAdapter(private val viewModel: DetailViewModel) : Pager
         val layoutInflater = LayoutInflater.from(container.context)
         var view = View(container.context)
 
-        if (position == 0){
+        if (position == HISTORY_TAB){
             view = layoutInflater.inflate(R.layout.customer_history_layout, container, false)
 
             val linearLayoutManager = LinearLayoutManager(container.context)
@@ -47,7 +49,7 @@ class CustomerDetailPagerAdapter(private val viewModel: DetailViewModel) : Pager
             }
 
 
-        } else if (position == 1) {
+        } else if (position ==  ABOUT_TAB) {
             view = layoutInflater.inflate(R.layout.customer_about_layout, container, false)
 
             CustomerAboutLayoutBinding.bind(view).apply {

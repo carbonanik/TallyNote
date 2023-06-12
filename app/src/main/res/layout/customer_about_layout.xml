@@ -271,7 +271,8 @@
             android:layout_marginBottom="76dp"
             android:onClick="@{() -> detailViewModel.onEditCustomerClick()}"
             android:text="@string/edit"
-            app:backgroundTint="@color/colorButton"
+            android:background="@drawable/rounded_black_shape"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider" />
@@ -285,7 +286,8 @@
             android:layout_marginBottom="130dp"
             android:onClick="@{() -> detailViewModel.onDeleteCustomerClick()}"
             android:text="@string/delete"
-            app:backgroundTint="@color/colorButton"
+            android:background="@drawable/rounded_black_shape"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/divider" />
