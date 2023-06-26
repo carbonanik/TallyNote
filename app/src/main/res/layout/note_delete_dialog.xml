@@ -31,7 +31,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:text="@string/cancel"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/blackButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
@@ -42,7 +42,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:text="@string/confirm"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="@+id/cancelButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cancelButton" />

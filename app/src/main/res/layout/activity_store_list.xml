@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="storeListViewModel"
+            type="com.carbondev.tallynote.view.viewmodel.StoreListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Background"
+        tools:context=".view.activity.StoreListActivity">
+
+        <SearchView
+            android:id="@+id/customer_list_searchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </SearchView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/store_recyclerVew"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/customer_list_searchView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customer_list_searchView"
+            app:setAdapter="@{storeListViewModel.adapter}"
+            tools:listitem="@layout/store_item_layout" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_black_shape"
+            android:onClick="@{() -> storeListViewModel.onAddStoreProductClick()}"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/add_store_product"
+            android:textColor="@color/Foreground"
+            app:backgroundTint="@color/blackButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

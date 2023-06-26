@@ -4,9 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/361e895212743944b5b65b339eb214e5/jetified-input-3.3.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/361e895212743944b5b65b339eb214e5/jetified-input-3.3.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/361e895212743944b5b65b339eb214e5/jetified-input-3.3.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f1e62dc7c6d9f1a1c0c7c428b453ffab/transformed/jetified-input-3.3.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f1e62dc7c6d9f1a1c0c7c428b453ffab/transformed/jetified-input-3.3.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f1e62dc7c6d9f1a1c0c7c428b453ffab/transformed/jetified-input-3.3.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f1e62dc7c6d9f1a1c0c7c428b453ffab/transformed/jetified-input-3.3.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.afollestad.material-dialogs/input/3.3.0/9981511576fca2c01f51b58703337c5475b3e64a/input-3.3.0-javadoc.jar!/" />

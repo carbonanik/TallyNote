@@ -32,6 +32,8 @@
     <string name="social_media">সামাজিক মাধ্যম</string>
     <string name="share">ছড়িয়ে দিন</string>
     <string name="person_subject">ব্যাক্তি / বিষয়</string>
+    <string name="store_product">পণ্য</string>
+
     <string name="name">নাম</string>
     <string name="gender">লিঙ্গ</string>
     <string name="male">পুরুষ</string>
@@ -89,7 +91,16 @@
     <string name="edit_name">নাম সম্পাদন</string>
     <string name="change_language">ভাষা পরিবর্তন</string>
     <string name="add_person">নতুন ব্যক্তি</string>
+    <string name="add_store_product">পণ্য যোগ করুন</string>
     <string name="go_notes">নোটগুলি</string>
     <string name="list_semicolon">\"তালিকা: \"</string>
+    <string name="in_store">স্টক</string>
+    <string name="product_count">পণ্যের সংখ্যা</string>
+
+    <string name="buy">ক্রয়</string>
+    <string name="sell">বিক্রয়</string>
+    <string name="quantity">পরিমাণ</string>
+    <string name="unit_price">একক মূল্য</string>
+    <string name="edit_product">পণ্য সম্পাদন</string>
 
 </resources>

@@ -37,7 +37,7 @@ class CustomerListAdapter(private val listViewModel: ListViewModel, private val 
     override fun onBindViewHolder(holder: CustomerListViewHolder, position: Int) {
 
         val customer = listViewModel.customerList.value!![position]
-        holder.bind(customer, listViewModel)
+        holder. bind(customer, listViewModel)
 
         animateItemView(holder, position)
     }

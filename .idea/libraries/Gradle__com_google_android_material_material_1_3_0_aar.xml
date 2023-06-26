@@ -8,8 +8,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c165cb6647ffb61660e76dc7d304fa2d/material-1.3.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c165cb6647ffb61660e76dc7d304fa2d/material-1.3.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c165cb6647ffb61660e76dc7d304fa2d/material-1.3.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6680a5a0f75c6df0dbd570ddd38e4853/transformed/material-1.3.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6680a5a0f75c6df0dbd570ddd38e4853/transformed/material-1.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6680a5a0f75c6df0dbd570ddd38e4853/transformed/material-1.3.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6680a5a0f75c6df0dbd570ddd38e4853/transformed/material-1.3.0/res" />
     </CLASSES>
     <JAVADOC />

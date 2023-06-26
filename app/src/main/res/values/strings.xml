@@ -31,6 +31,7 @@
     <string name="social_media">Social media</string>
     <string name="share">Share</string>
     <string name="person_subject">Person / Subject</string>
+    <string name="store_product">Product</string>
     <string name="name">Name</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
@@ -88,7 +89,16 @@
     <string name="edit_name">Edit Name</string>
     <string name="change_language">Change Language</string>
     <string name="add_person">ADD PERSON</string>
+    <string name="add_store_product">ADD PRODUCT</string>
     <string name="go_notes">Notes</string>
     <string name="list_semicolon">\"List: \"</string>
+    <string name="in_store">In Stock</string>
+    <string name="product_count">Product Count</string>
+
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="quantity">Quantity</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="edit_product">Edit Product</string>
 
 </resources>

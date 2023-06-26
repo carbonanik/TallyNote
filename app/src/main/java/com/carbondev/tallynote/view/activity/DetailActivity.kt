@@ -3,9 +3,9 @@ package com.carbondev.tallynote.view.activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
@@ -19,13 +19,12 @@ import com.carbondev.tallynote.datamodel.*
 import com.carbondev.tallynote.view.viewmodel.DetailViewModel
 import java.util.*
 
-
 class DetailActivity : AppCompatActivity() {
 
-    private lateinit var viewModel : DetailViewModel
-    private lateinit var binding : ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
+    private lateinit var binding: ActivityDetailBinding
 
-    override fun onCreate(savedInstanceState : Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setupBinding(savedInstanceState)
@@ -46,7 +45,10 @@ class DetailActivity : AppCompatActivity() {
             viewModel.init(getCustomerKeyIntent(), this)
         }
 
-        binding = DataBindingUtil.setContentView<ActivityDetailBinding>(this, R.layout.activity_detail)
+        binding = DataBindingUtil.setContentView<ActivityDetailBinding>(
+            this,
+            R.layout.activity_detail
+        )
             .apply {
                 this.lifecycleOwner = this@DetailActivity
                 this.detailViewModel = viewModel
@@ -75,7 +77,8 @@ class DetailActivity : AppCompatActivity() {
             binding.customerDetailPager.currentItem = ABOUT_TAB
         }
 
-        binding.customerDetailPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        binding.customerDetailPager.addOnPageChangeListener(object :
+            ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(position: Int) {}
             override fun onPageScrolled(position: Int, p1: Float, p2: Int) {}
             override fun onPageSelected(position: Int) {
@@ -87,7 +90,7 @@ class DetailActivity : AppCompatActivity() {
                     binding.calenderButton.visibility = View.VISIBLE
                 }
 
-                if ( position == ABOUT_TAB) {
+                if (position == ABOUT_TAB) {
                     binding.tabHistory.animate().scaleX(1F).scaleY(1F)
                     binding.tabAbout.animate().scaleX(1.5F).scaleY(1.5F)
                     binding.tabHistory.bringToFront()
@@ -131,13 +134,13 @@ class DetailActivity : AppCompatActivity() {
             editCustomerDialog.show()
         }
 
-        viewModel.onCartClick.observe( this) {
+        viewModel.onCartClick.observe(this) {
             val intent = Intent(this, SellCartActivity::class.java)
             intent.putExtra(INTENT_SELL_CURT, viewModel.currentCustomer.value?.key)
             startActivity(intent)
         }
 
-        viewModel.payDueButtonClick.observe( this) {
+        viewModel.payDueButtonClick.observe(this) {
 
             val payDialog = AlertDialog.Builder(this).create()
             val view = layoutInflater.inflate(R.layout.pay_customer_dialog, null)
@@ -193,18 +196,18 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleDateButtonClick(){
+    private fun handleDateButtonClick() {
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog( this, { _, pickedYear, monthOfYear, dayOfMonth ->
+        val datePickerDialog = DatePickerDialog(this, { _, pickedYear, monthOfYear, dayOfMonth ->
 
             viewModel.searchByDate(pickedYear, monthOfYear, dayOfMonth)
 
-        }, year, month, day )
+        }, year, month, day)
 
         datePickerDialog.show()
     }

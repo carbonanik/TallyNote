@@ -14,45 +14,29 @@ class StringNumberCalculator(firstString : String, secondString : String) {
 
     fun sub() = String.format("%.0f",(firstNumber - secondNumber))
 
+    private fun intAdd(a: String?, b: String?): String {
+        return ((a?.toIntOrNull() ?: 0).plus(b?.toIntOrNull() ?: 0)).toString()
+    }
+
+    private fun intSub(a: String?, b: String?): String {
+        return ((a?.toIntOrNull() ?: 0).minus(b?.toIntOrNull() ?: 0)).toString()
+    }
+
 //    fun mul() = String.format("%.0f",(firstNumber * secondNumber))
 
 //    fun div() = String.format("%.0f",(firstNumber / secondNumber))
 }
 
-//class SCal2(private val initialNumber : String = "0") {
-//    private var resault  = initialNumber.toFloat()
+fun specialAdd(a: String?, b: String?): String {
+    return ((a?.toFloatOrNull() ?: 0f) + (b?.toFloatOrNull() ?: 0f)).toString()
+}
 
-//    fun initNum(initialNumber: String){
-//        resault = initialNumber.toFloat()
-//    }
+fun specialSub(a: String?, b: String?): String {
+    return ((a?.toFloatOrNull() ?: 0f).minus(b?.toFloatOrNull() ?: 0f)).toString()
+}
 
-//    fun add(newNumber : String): String {
-//        resault += newNumber.toFloat()
-//        return resault.toString()
-//    }
-
-//    fun sub(newNumber : String): String {
-//        resault -= newNumber.toFloat()
-//        return resault.toString()
-//    }
-
-//    fun mul(newNumber : String): String {
-//        resault *= newNumber.toFloat()
-//        return resault.toString()
-//    }
-
-//    fun div(newNumber : String): String {
-//        resault /= newNumber.toFloat()
-//        return resault.toString()
-//    }
-
-//    fun equal(): String {
-//        return resault.toString()
-//    }
-//}
-
-//fun main(){
-//    val sc = SCal2()
-//    sc.initNum("10")
-//    println(sc.add("10"))
-//}
+fun specialDiv(a: String?, b: String?): String {
+    val newB = b?.toFloatOrNull() ?: 0f
+    if (newB == 0f) return "0"
+    return ((a?.toFloatOrNull() ?: 0f).div(newB)).toString()
+}

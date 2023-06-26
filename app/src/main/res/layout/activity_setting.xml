@@ -148,7 +148,7 @@
             android:layout_marginRight="31dp"
             android:onClick="@{() -> settingViewModel.onLogOutButtonClick()}"
             android:text="@string/log_out"
-            app:backgroundTint="@color/colorButton"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="@+id/shareApp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/shareApp" />
@@ -161,7 +161,7 @@
             android:layout_marginRight="16dp"
             android:onClick="@{() -> settingViewModel.onOwnerNameEditButtonClick()}"
             android:text="@string/edit_name"
-            app:backgroundTint="@color/colorButton"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView8" />
 
@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:text="@string/change_language"
             android:onClick="@{() -> settingViewModel.onLanguageChangeButtonClick()}"
-            app:backgroundTint="@color/colorButton"
+            app:backgroundTint="@color/blackButton"
             app:layout_constraintEnd_toEndOf="@+id/button2"
             app:layout_constraintTop_toTopOf="@+id/textView84534" />
 

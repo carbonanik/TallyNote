@@ -24,6 +24,7 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
     val onAddCustomerClick = MutableLiveData<Boolean>()
     val onNoteClick = MutableLiveData<Boolean>()
     val onSettingClick = MutableLiveData<Boolean>()
+    val onOpenStoreClick = MutableLiveData<Boolean>()
 
     val ownerName = remoteDataRepo.ownerName
 
@@ -65,6 +66,10 @@ class ListViewModel(application: Application): AndroidViewModel(application) {
 
     fun onNoteClick() {
         onNoteClick.value = true
+    }
+
+    fun onOpenStoreClick() {
+        onOpenStoreClick.value = true
     }
 
     fun addNewCustomer(customer: Customer){

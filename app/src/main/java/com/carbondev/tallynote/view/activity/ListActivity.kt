@@ -54,7 +54,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun setUpBinding(savedInstanceState: Bundle?) {
 
-        val linearLayoutManager = LinearLayoutManager(this)
+            val linearLayoutManager = LinearLayoutManager(this)
 
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
@@ -146,6 +146,11 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             this.startActivity(intent)
         }
 
+        viewModel.onOpenStoreClick.observe(this) {
+            val intent = Intent(this, StoreListActivity::class.java)
+            this.startActivity(intent)
+        }
+
         viewModel.liveCustomerList.observe(this) {
             viewModel.customerList.value = viewModel.liveCustomerList.value
             viewModel.refreshList()
@@ -169,15 +174,15 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun showCheckConnection(){
-        val checkD = AlertDialog.Builder(this).create()
-        checkD.setCancelable(false)
+        val dialog = AlertDialog.Builder(this).create()
+        dialog.setCancelable(false)
 
         val view = layoutInflater.inflate(R.layout.check_connectivity, null)
-        val checkB = CheckConnectivityBinding.bind(view)
-        checkD.setView(view)
+        val checkConnectivityBinding = CheckConnectivityBinding.bind(view)
+        dialog.setView(view)
 
-        checkB.ok.setOnClickListener {
-            checkD.dismiss()
+        checkConnectivityBinding.ok.setOnClickListener {
+            dialog.dismiss()
             if ( (Connectivity().check(this)) ){
                 syncDB()
             }// else {
@@ -185,7 +190,7 @@ class ListActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
            // }
         }
 
-        checkD.show()
+        dialog.show()
     }
 
     private fun syncDB(){

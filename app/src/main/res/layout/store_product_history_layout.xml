@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.carbondev.tallynote.view.viewmodel.StoreProductDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_history"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/Background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setAdapter="@{viewModel.historyAdapter}" />
+
+        <Button
+            android:id="@+id/storeProductAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:onClick="@{() -> viewModel.onBuyButtonClick()}"
+            android:background="@drawable/rounded_black_shape"
+            app:backgroundTint="@color/blackButton"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/buy"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_history"
+            app:layout_constraintEnd_toStartOf="@+id/storeProductRemvoe"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/storeProductRemvoe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:onClick="@{() -> viewModel.onSellButtonClick()}"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/sell"
+            android:background="@drawable/rounded_black_shape"
+            app:backgroundTint="@color/blackButton"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_history"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/storeProductAdd" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

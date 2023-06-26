@@ -41,7 +41,7 @@
             android:text="@string/note_clone"
             android:textColor="@color/darkText"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView31"
+            app:layout_constraintStart_toStartOf="@+id/stmType"
             app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
         <TextView
@@ -62,7 +62,7 @@
             tools:text="This Is Note" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/stmType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -85,9 +85,9 @@
             android:textColor="@color/darkText"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView31"
-            app:layout_constraintStart_toEndOf="@+id/textView31"
-            app:layout_constraintTop_toTopOf="@+id/textView31"
+            app:layout_constraintBottom_toBottomOf="@+id/stmType"
+            app:layout_constraintStart_toEndOf="@+id/stmType"
+            app:layout_constraintTop_toTopOf="@+id/stmType"
             tools:text="0" />
 
         <TextView
@@ -98,8 +98,8 @@
             android:textColor="@color/darkText"
             android:textStyle="bold"
             app:beforeDueOrAdv="@{sell.beforeDue}"
-            app:layout_constraintStart_toStartOf="@+id/textView31"
-            app:layout_constraintTop_toBottomOf="@+id/textView31"
+            app:layout_constraintStart_toStartOf="@+id/stmType"
+            app:layout_constraintTop_toBottomOf="@+id/stmType"
             tools:text="Before Total Due: 0" />
 
         <TextView
@@ -110,7 +110,7 @@
             android:textColor="@color/darkText"
             android:textStyle="bold"
             app:afterDueOrAdv="@{sell.afterDue}"
-            app:layout_constraintStart_toStartOf="@+id/textView31"
+            app:layout_constraintStart_toStartOf="@+id/stmType"
             app:layout_constraintTop_toBottomOf="@+id/textView49"
             tools:text="After Total Due: 0" />
 

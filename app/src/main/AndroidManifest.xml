@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.carbondev.tallynote">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -19,6 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.activity.StoreListActivity" />
+        <activity android:name=".view.activity.StoreProductDetailActivity" />
         <activity android:name=".view.activity.SettingActivity" />
         <activity android:name=".view.activity.NoteListActivity" />
         <activity android:name=".view.activity.NoteActivity" />
@@ -26,9 +28,8 @@
             android:name=".view.activity.SellCartActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".view.activity.DetailActivity" />
-        <activity android:name=".view.activity.ListActivity">
+        <activity android:name=".view.activity.ListActivity" />
 
-        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

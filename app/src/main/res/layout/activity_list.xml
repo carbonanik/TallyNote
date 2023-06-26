@@ -51,6 +51,7 @@
             tools:listitem="@layout/customer_item_layout" />
 
         <Button
+            android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -124,6 +125,19 @@
                 tools:text="1000" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/buttonOpenStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="150dp"
+            android:clickable="true"
+            android:onClick="@{() -> listViewModel.onOpenStoreClick()}"
+            app:layout_constraintBottom_toBottomOf="@+id/customer_recyclerVew"
+            app:layout_constraintEnd_toEndOf="@+id/customer_recyclerVew"
+            app:srcCompat="@drawable/add_business_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

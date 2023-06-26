@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/edit/baseline_edit_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/remove/baseline_remove_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,10 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_launcher" />
-                            <entry key="sourceFile" value="E:\Work\Tally Note\ic_launcher.svg" />
+                            <entry key="outputName" value="ic_baseline_remove_24" />
+                            <entry key="sourceFile" value="$USER_HOME$/E:\Work\Tally Note\ic_launcher.svg" />
                           </map>
                         </option>
                       </PersistentState>

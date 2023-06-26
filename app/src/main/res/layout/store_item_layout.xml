@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="itemStoreProduct"
+            type="com.carbondev.tallynote.datamodel.StoreProduct" />
+
+        <variable
+            name="itemCustomerViewModel"
+            type="com.carbondev.tallynote.view.viewmodel.StoreListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/Foreground"
+        android:onClick="@{() -> itemCustomerViewModel.onItemClick(itemStoreProduct.key)}">
+
+        <ImageView
+            android:id="@+id/item_store_product_plus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/option"
+            android:onClick="@{() -> itemCustomerViewModel.onItemAddButtonClick(itemStoreProduct.key)}"
+            android:padding="7dp"
+            android:src="@drawable/ic_add_w"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintEnd_toStartOf="@+id/item_store_product_minus"
+            app:layout_constraintTop_toTopOf="@+id/itemCustomerName" />
+
+        <ImageView
+            android:id="@+id/item_store_product_minus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/option"
+            android:onClick="@{() -> itemCustomerViewModel.onItemRemoveButtonClick(itemStoreProduct.key)}"
+            android:padding="7dp"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintBottom_toBottomOf="@+id/item_store_product_plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_store_product_plus" />
+
+
+        <TextView
+            android:id="@+id/itemCustomerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toStartOf="@+id/item_customer_option"
+            android:layout_toLeftOf="@+id/item_customer_option"
+            android:text="@{itemStoreProduct.name}"
+            android:textColor="@color/darkText"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_customer_option"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Product Name" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="7dp"
+            android:textColor="@color/darkText"
+            android:textSize="12sp"
+            app:inStoreText="@{itemStoreProduct.countInStock}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemCustomerName"
+            app:layout_constraintEnd_toStartOf="@+id/item_customer_option"
+            app:layout_constraintStart_toStartOf="@+id/itemCustomerName"
+            app:layout_constraintTop_toBottomOf="@+id/itemCustomerName"
+            tools:text="In Store : 100" />
+
+<!--        <View-->
+<!--            android:id="@+id/view7"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:background="?attr/selectableItemBackground"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

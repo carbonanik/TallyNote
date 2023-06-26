@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/cancel"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText6" />
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/paid"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="@+id/paidButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/paidButton" />
@@ -63,7 +63,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/all"
-            android:backgroundTint="@color/colorButton"
+            android:backgroundTint="@color/blackButton"
             app:layout_constraintBottom_toBottomOf="@+id/canselButton"
             app:layout_constraintEnd_toStartOf="@+id/addButton"
             app:layout_constraintStart_toEndOf="@+id/canselButton"

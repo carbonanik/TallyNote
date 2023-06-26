@@ -17,6 +17,14 @@ fun setDueOrAdv(textView: TextView, amount: String?) {
     )
 }
 
+@BindingAdapter("inStoreText")
+fun setInStoreText(textView: TextView, amount: String?) {
+    if (amount == null) return
+    val inStore = textView.context.getString(R.string.in_store)
+    val amountEnOrBn = numEnOrBn(amount, textView.context)
+    textView.text = "$inStore : $amountEnOrBn"
+}
+
 @BindingAdapter("beforeDueOrAdv")
 fun setBeforeDueOrAdv(textView: TextView, beforeTotalDue: String?) {
 //    if (beforeTotalDue == null) return

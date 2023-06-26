@@ -3,7 +3,6 @@ package com.carbondev.tallynote.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.carbondev.tallynote.datamodel.*
-import com.carbondev.tallynote.utils.DateTimeString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -38,7 +37,7 @@ object FirebaseDataRepository {
 
 
     private var auth = FirebaseAuth.getInstance()
-    private const val lastEdited = "lastEdited"
+    const val lastEdited = "lastEdited"
 
     // Customer **********************************************
 
@@ -393,13 +392,13 @@ object FirebaseDataRepository {
             })
     }
 
-    private fun getUid(): String? = auth.currentUser?.uid
+    fun getUid(): String? = auth.currentUser?.uid
 
-    private fun userRef(): DatabaseReference? { // ~
+    fun userRef(): DatabaseReference? { // ~
         var ref: DatabaseReference? = null
         val uid: String? = getUid()
 
-        if (!uid.isNullOrEmpty()) {
+        if (!uid.isNullOrEmpty()) { // uid != null || uid != ""
             ref = FirebaseDatabase.getInstance().reference.child(USERS).child(uid)
         }
         return ref
